@@ -5,13 +5,13 @@ const Navbar = ({ user }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <NavLink className="navbar-brand" to="#">
-        MoviesApp
+        LIC AGENT MANAGEMENT APP
       </NavLink>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
           <li className="nav-item">
-            <NavLink className="nav-link" to="/movies">
-              Movies
+            <NavLink className="nav-link" to="/gallary">
+              Dashboard
             </NavLink>
           </li>
           {!user && (

@@ -34,14 +34,28 @@ class Login extends Form {
   };
 
   render() {
-    if (auth.getCurrentUser()) return  <Redirect to="/" />;
+    if (auth.getCurrentUser()) return <Redirect to="/" />;
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          {this.displayInput("email", "Email")}
-          {this.displayInput("password", "Password", "password")}
-          {this.displayButton("Login")}
-        </form>
+      <div className="row" style={{ marginTop: "8%" }}>
+        <div className="col-6" style={{ borderRight: "1px solid #0f0700" }}>
+          <img
+            src="https://licmumbai.com/wp-content/uploads/2020/09/How-to-become-LIC-AGENT_-2.png"
+            alt="LIC"
+            title="LIC"
+            className="lic_image"
+          />
+        </div>
+        <div className="col-6">
+        <h1 style={{textDecoration:'underline',margin:'10px'}}>{'Agent Login'}</h1>
+          <form onSubmit={this.handleSubmit}>
+            {this.displayInput("email", "Email/Phone")}
+            {this.displayInput("password", "Password", "password")}
+            {this.displayButton("Login")}
+          </form>
+          <span>
+            <a href="/register">New User ?</a>
+          </span>
+        </div>
       </div>
     );
   }

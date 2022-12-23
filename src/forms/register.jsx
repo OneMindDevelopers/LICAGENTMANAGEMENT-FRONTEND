@@ -2,7 +2,7 @@ import React from "react";
 import Joi from "joi-browser";
 import Form from "./form";
 import * as userService from "../services/registrationService";
-import auth from '../services/authService';
+import auth from "../services/authService";
 
 class Registration extends Form {
   state = {
@@ -23,7 +23,7 @@ class Registration extends Form {
   doSubmit = async () => {
     try {
       const response = await userService.register(this.state.data);
-      auth.loginWithJwt(response.headers['x-auth-token']);
+      auth.loginWithJwt(response.headers["x-auth-token"]);
       window.location = "/";
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
@@ -36,13 +36,24 @@ class Registration extends Form {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          {this.displayInput("email", "Email")}
-          {this.displayInput("username", "Username")}
-          {this.displayInput("password", "Password", "password")}
-          {this.displayButton("Register")}
-        </form>
+      <div className="row" style={{ marginTop: "8%" }}>
+        <div className="col-6" style={{ borderRight: "1px solid #0f0700" }}>
+          <img
+            src="https://licmumbai.com/wp-content/uploads/2020/09/How-to-become-LIC-AGENT_-2.png"
+            alt="LIC"
+            title="LIC"
+            className="lic_image"
+          />
+        </div>
+        <div className="col-6">
+         <h1 style={{textDecoration:'underline',margin:'10px'}}>{'Agent Registration'}</h1>
+          <form onSubmit={this.handleSubmit}>
+            {this.displayInput("email", "Email")}
+            {this.displayInput("username", "Username")}
+            {this.displayInput("password", "Password", "password")}
+            {this.displayButton("Register")}
+          </form>
+        </div>
       </div>
     );
   }
