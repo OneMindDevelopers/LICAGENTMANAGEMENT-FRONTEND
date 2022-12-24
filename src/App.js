@@ -10,7 +10,9 @@ import Logout from "./components/logout";
 import Gallary from "./components/gallary";
 
 class App extends Component {
-  state = {};
+  state = {
+    user: null,
+  };
 
   componentDidMount = () => {
     const user = auth.getCurrentUser();
@@ -25,7 +27,6 @@ class App extends Component {
           <Switch>
             <Route path="/gallary" component={Gallary} />
             <Route path="/logout" component={Logout} />
-            <Route path="/gallary" component={Gallary} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/not-found" component={NotFound} />

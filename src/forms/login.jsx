@@ -22,12 +22,11 @@ class Login extends Form {
 
   doSubmit = async () => {
     try {
+      this.setState({ isToastNotification: true });
       const { data } = this.state;
       await auth.login(data.phone, data.password);
-      const { state } = this.props.location;
-      this.setState({ isToastNotification: true });
       setTimeout(() => {
-        window.location = state ? state.from.pathname : "/gallary";
+        window.location = "/gallary";
       }, 3000);
     } catch (ex) {
       if (ex.response) {
