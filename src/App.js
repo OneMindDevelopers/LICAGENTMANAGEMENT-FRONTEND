@@ -6,12 +6,8 @@ import Login from "./forms/login";
 import Navbar from "./components/navbar";
 import NotFound from "./components/not-found";
 import Register from "./forms/register";
-import MoviesForm from "./components/moviesForm";
 import Logout from "./components/logout";
-import ProtectedRoute from "./components/protectRoute";
-//import ProtectedRoute from './components/protectRoute';
 import Gallary from "./components/gallary";
-import LoginNavBar from "./components/loginNavBar";
 
 class App extends Component {
   state = {};
@@ -24,15 +20,11 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* <Navbar user={this.state.user} /> */}
-        <LoginNavBar />
+        <Navbar user={this.state.user} />
         <main className="container-fluid">
           <Switch>
-            {/* <ProtectedRoute path="/movies/:id" component={MoviesForm} />
             <Route path="/gallary" component={Gallary} />
-            
             <Route path="/logout" component={Logout} />
-             */}
             <Route path="/gallary" component={Gallary} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />

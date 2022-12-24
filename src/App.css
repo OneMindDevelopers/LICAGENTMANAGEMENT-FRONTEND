@@ -46,3 +46,8 @@
 .lic_image {
   width: 100%;
 }
+
+/* toast */
+.custom-translate-middle {
+  transform: translate(55%, -70%) !important;
+}
