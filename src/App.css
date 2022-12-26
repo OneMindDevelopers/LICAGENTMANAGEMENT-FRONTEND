@@ -37,6 +37,22 @@
   }
 }
 
+/* Login and Registration CSS  */
+
+.margin-top {
+  margin-top: 8% !important;
+}
+
+.border-right {
+  border-right: 1px solid #0f0700 !important;
+}
+
+.agent-login-style,
+.agent-registration-style {
+  text-decoration: underline;
+  margin: 10px;
+}
+
 /* login page css */
 
 .layout-body {
@@ -50,4 +66,12 @@
 /* toast */
 .custom-translate-middle {
   transform: translate(55%, -70%) !important;
+}
+
+/* gallary */
+
+.card-style {
+  width: 18rem;
+  float: left;
+  margin: 5px;
 }

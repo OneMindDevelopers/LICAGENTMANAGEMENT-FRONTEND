@@ -77,11 +77,7 @@ class Gallary extends Component {
         <div className="col-9">
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           {paginatedGallaries.map((gallary) => (
-            <div
-              className="card"
-              style={{ width: "18rem", float: "left", margin: "5px" }}
-              key={gallary._id}
-            >
+            <div className="card card-style" key={gallary._id}>
               <div className="card-body">
                 <h5 className="card-title">{gallary.title}</h5>
                 <p className="card-text">

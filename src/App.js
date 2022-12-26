@@ -8,6 +8,7 @@ import NotFound from "./components/not-found";
 import Register from "./forms/register";
 import Logout from "./components/logout";
 import Gallary from "./components/gallary";
+import ForgotPassword from "./forms/forgotPassword";
 
 class App extends Component {
   state = {
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path="/logout" component={Logout} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
+            <Route path="/forgotPassword" component={ForgotPassword} />
             <Route path="/not-found" component={NotFound} />
             <Route path="/" exact component={Login} />
             <Redirect to="/not-found" />

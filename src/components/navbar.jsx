@@ -9,11 +9,13 @@ const Navbar = ({ user }) => {
       </NavLink>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav">
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/gallary">
-              Dashboard
-            </NavLink>
-          </li>
+          {user && (
+            <li className="nav-item">
+              <NavLink className="nav-link" to="/gallary">
+                Dashboard
+              </NavLink>
+            </li>
+          )}
           {!user && (
             <React.Fragment>
               <li className="nav-item">
@@ -31,7 +33,7 @@ const Navbar = ({ user }) => {
           {user && (
             <React.Fragment>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/profile">
+                <NavLink className="nav-link" to="/gallary">
                   {user.name}
                 </NavLink>
               </li>

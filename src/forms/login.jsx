@@ -4,6 +4,7 @@ import Form from "./form";
 import auth from "../services/authService";
 import { Redirect } from "react-router";
 import ToastNotification from "./../common/toastNotification";
+import { LOGIN_TOAST_MESSAGE, AGENT_LOGIN } from "./../constant";
 
 class Login extends Form {
   state = {
@@ -42,8 +43,8 @@ class Login extends Form {
     const { isToastNotification } = this.state;
     if (auth.getCurrentUser()) return <Redirect to="/" />;
     return (
-      <div className="row" style={{ marginTop: "8%" }}>
-        <div className="col-6" style={{ borderRight: "1px solid #0f0700" }}>
+      <div className="row margin-top">
+        <div className="col-6 border-right">
           <img
             src="https://licmumbai.com/wp-content/uploads/2020/09/How-to-become-LIC-AGENT_-2.png"
             alt="LIC"
@@ -53,18 +54,17 @@ class Login extends Form {
         </div>
         <div className="col-6">
           {isToastNotification && (
-            <ToastNotification message="Login is successfull" />
+            <ToastNotification message={LOGIN_TOAST_MESSAGE} />
           )}
-          <h1 style={{ textDecoration: "underline", margin: "10px" }}>
-            {"Agent Login"}
-          </h1>
+          <h1 className="agent-login-style">{AGENT_LOGIN}</h1>
           <form onSubmit={this.handleSubmit}>
             {this.displayInput("phone", "Phone")}
             {this.displayInput("password", "Password", "password")}
             {this.displayButton("Login")}
           </form>
           <span>
-            <a href="/register">New User ?</a>
+            <a href="/register">New User ?</a> &nbsp;
+            <a href="/forgotPassword">Forgot Password ?</a>
           </span>
         </div>
       </div>
