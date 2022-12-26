@@ -67,14 +67,14 @@ class Gallary extends Component {
 
     return (
       <div className="row">
-        <div className="col-3">
+        <div className="col-3 background-image">
           <ListGroup
             items={catagories}
             selectedCatagory={selectedCatagory}
             onCatagoryChange={this.handleCatagoryChange}
           />
         </div>
-        <div className="col-9">
+        <div className="col-9 background-image">
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           {paginatedGallaries.map((gallary) => (
             <div className="card card-style" key={gallary._id}>

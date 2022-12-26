@@ -5,6 +5,7 @@ import * as userService from "../services/registrationService";
 import auth from "../services/authService";
 import ToastNotification from "./../common/toastNotification";
 import { AGENT_REGISTRATION, REGISTER_TOAST_MESSAGE } from "../constant";
+import HomePageBackgroundImage from "../common/homePageBackgorundImage";
 
 class Registration extends Form {
   state = {
@@ -53,14 +54,9 @@ class Registration extends Form {
     return (
       <div className="row margin-top">
         <div className="col-6 border-right">
-          <img
-            src="https://licmumbai.com/wp-content/uploads/2020/09/How-to-become-LIC-AGENT_-2.png"
-            alt="LIC"
-            title="LIC"
-            className="lic_image"
-          />
+          <HomePageBackgroundImage />
         </div>
-        <div className="col-6">
+        <div className="col-6 background-image">
           {isToastNotification && (
             <ToastNotification message={REGISTER_TOAST_MESSAGE} />
           )}

@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = ({ user }) => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-right">
       <NavLink className="navbar-brand" to="#">
         LIC AGENT MANAGEMENT APP
       </NavLink>

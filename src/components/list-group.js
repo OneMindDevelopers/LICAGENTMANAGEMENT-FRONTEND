@@ -1,6 +1,6 @@
 const ListGroup = ({ items, onCatagoryChange, selectedCatagory }) => {
   return (
-    <ul className="list-group m-2">
+    <ul className="list-group m-3">
       {items.map((item) => (
         <li
           key={item._id}

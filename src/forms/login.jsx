@@ -5,6 +5,7 @@ import auth from "../services/authService";
 import { Redirect } from "react-router";
 import ToastNotification from "./../common/toastNotification";
 import { LOGIN_TOAST_MESSAGE, AGENT_LOGIN } from "./../constant";
+import HomePageBackgroundImage from "../common/homePageBackgorundImage";
 
 class Login extends Form {
   state = {
@@ -45,14 +46,9 @@ class Login extends Form {
     return (
       <div className="row margin-top">
         <div className="col-6 border-right">
-          <img
-            src="https://licmumbai.com/wp-content/uploads/2020/09/How-to-become-LIC-AGENT_-2.png"
-            alt="LIC"
-            title="LIC"
-            className="lic_image"
-          />
+          <HomePageBackgroundImage />
         </div>
-        <div className="col-6">
+        <div className="col-6 background-image">
           {isToastNotification && (
             <ToastNotification message={LOGIN_TOAST_MESSAGE} />
           )}
@@ -63,8 +59,13 @@ class Login extends Form {
             {this.displayButton("Login")}
           </form>
           <span>
-            <a href="/register">New User ?</a> &nbsp;
-            <a href="/forgotPassword">Forgot Password ?</a>
+            <a href="/register" className="black">
+              New User ?
+            </a>{" "}
+            &nbsp;
+            <a href="/forgotPassword" className="black">
+              Forgot Password ?
+            </a>
           </span>
         </div>
       </div>

@@ -9,6 +9,7 @@ import {
   FORGORPASSWORD_TOAST_MESSAGE,
 } from "./../constant";
 import * as userService from "../services/registrationService";
+import HomePageBackgroundImage from "../common/homePageBackgorundImage";
 
 class ForgotPassword extends Form {
   state = {
@@ -50,14 +51,9 @@ class ForgotPassword extends Form {
     return (
       <div className="row margin-top">
         <div className="col-6 border-right">
-          <img
-            src="https://licmumbai.com/wp-content/uploads/2020/09/How-to-become-LIC-AGENT_-2.png"
-            alt="LIC"
-            title="LIC"
-            className="lic_image"
-          />
+          <HomePageBackgroundImage />
         </div>
-        <div className="col-6">
+        <div className="col-6 background-image">
           {isToastNotification && (
             <ToastNotification message={FORGORPASSWORD_TOAST_MESSAGE} />
           )}

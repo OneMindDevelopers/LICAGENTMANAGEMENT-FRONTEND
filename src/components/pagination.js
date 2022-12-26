@@ -5,7 +5,7 @@ const Pagination = ({ items, currentPage, pageSize, onPageChange }) => {
   const pages = _.range(1, pageCount + 1);
   return (
     <nav>
-      <ul className="pagination" style={{ clear: "left" }}>
+      <ul className="pagination " style={{ clear: "left" }}>
         {pages.map((page) => (
           <li
             key={page}
