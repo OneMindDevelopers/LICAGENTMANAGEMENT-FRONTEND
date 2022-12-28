@@ -9,3 +9,5 @@ export function register(user) {
 export function forgotPassword(user) {
   return http.post(apiEndpoint + "forgotPassword", user);
 }
+
+

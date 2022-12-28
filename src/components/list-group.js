@@ -3,7 +3,7 @@ const ListGroup = ({ items, onCatagoryChange, selectedCatagory }) => {
     <ul className="list-group m-3">
       {items.map((item) => (
         <li
-          key={item._id}
+          key={item.slno}
           className={
             item.name === selectedCatagory.name
               ? "list-group-item active cursor-pointer"
@@ -13,7 +13,7 @@ const ListGroup = ({ items, onCatagoryChange, selectedCatagory }) => {
             onCatagoryChange(item);
           }}
         >
-          {item.name}
+          {item.brand}
         </li>
       ))}
     </ul>

@@ -24,17 +24,23 @@ class ForgotPassword extends Form {
 
   schema = {
     phone: Joi.string().required().label("Phone"),
-    password: Joi.string().required().label("Password"),
-    confirmPassword: Joi.string().required().label("ConfirmPassword"),
+    password: Joi.string()
+      .required()
+      .label("Password"),
+    confirmPassword: Joi.string()
+      .valid(Joi.ref("password"))
+      .label("Confirm Password")
+      .required()
+      .options({ language: { any: { allowOnly: 'must match password' } } })
   };
 
   doSubmit = async () => {
     try {
       this.setState({ isToastNotification: true });
       await userService.forgotPassword(this.state.data);
-      setTimeout(() => {
-        window.location = "/login";
-      }, 3000);
+      // setTimeout(() => {
+      //   window.location = "/login";
+      // }, 3000);
     } catch (ex) {
       if (ex.response) {
         this.setState({ isToastNotification: false });

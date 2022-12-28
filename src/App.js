@@ -9,10 +9,13 @@ import Register from "./forms/register";
 import Logout from "./components/logout";
 import Gallary from "./components/gallary";
 import ForgotPassword from "./forms/forgotPassword";
+import UploadExcelFile from "./components/uploadFile/uploadFile";
 
 class App extends Component {
   state = {
     user: null,
+    excelData: null,
+    excelResponseDataFromNavBar: null,
   };
 
   componentDidMount = () => {
@@ -20,13 +23,34 @@ class App extends Component {
     this.setState({ user });
   };
 
+  handleExcelData = (excelData) => {
+    this.setState({ excelData });
+  };
+
+  handleExcelDataResponseFromNavBar = (excelResponseDataFromNavBar) => {
+    this.setState({ excelResponseDataFromNavBar });
+  };
+
   render() {
     return (
       <div className="App">
-        <Navbar user={this.state.user} />
+        <Navbar
+          user={this.state.user}
+          excelData={this.state.excelData}
+          handleExcelData={this.handleExcelDataResponseFromNavBar}
+        />
         <main className="container-fluid">
           <Switch>
-            <Route path="/gallary" component={Gallary} />
+            <Route
+              path="/gallary"
+              render={(props) => (
+                <Gallary
+                  {...props}
+                  onExcelData={this.handleExcelData}
+                  excelResponseDataFromNavbar={this.state.excelResponseDataFromNavBar}
+                />
+              )}
+            />
             <Route path="/logout" component={Logout} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />

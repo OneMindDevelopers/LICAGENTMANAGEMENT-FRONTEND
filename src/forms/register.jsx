@@ -34,7 +34,7 @@ class Registration extends Form {
 
   doSubmit = async () => {
     try {
-      const response = await userService.register(this.state.data);
+      await userService.register(this.state.data);
       this.setState({ isToastNotification: true });
       setTimeout(() => {
         window.location = "/login";
