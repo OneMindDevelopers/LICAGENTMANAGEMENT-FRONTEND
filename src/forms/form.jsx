@@ -41,7 +41,7 @@ class Form extends Component {
     this.doSubmit();
   };
 
-  displayInput = (name, label, type = "text") => {
+  displayInput = (name, label, type = "text", placeholderText) => {
     const { data, errors } = this.state;
     return (
       <Input
@@ -51,6 +51,7 @@ class Form extends Component {
         value={data[name]}
         handleValueChange={this.handleValueChange}
         error={errors[name]}
+        placeholderText={placeholderText}
       />
     );
   };

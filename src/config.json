@@ -1,4 +1,4 @@
 {
-  "baseUrl": "http://localhost:3000/admin/",
-  "itemUrl" : "http://localhost:3000/item/"
+  "baseUrl": "http://localhost:3001/admin/",
+  "itemUrl" : "http://localhost:3001/item/"
 }
