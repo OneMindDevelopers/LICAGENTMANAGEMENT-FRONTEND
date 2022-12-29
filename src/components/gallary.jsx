@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { getCatagories } from "../services/fakeCatagoryService";
-import { getGallaries } from "../services/fakeGallaryService";
 import ListGroup from "./list-group";
 import Pagination from "./pagination";
 import { paginate } from "./../utils/paginate";
 import SearchBox from "./../forms/searchBox";
 import UploadExcelFile from "./uploadFile/uploadFile";
+import SideBar from './sidebar';
 
 class Gallary extends Component {
   state = {
@@ -16,15 +15,6 @@ class Gallary extends Component {
     searchQuery: "",
     selectedCatagory: { slno: "", brand: "All Brands" },
     excelData: null,
-  };
-
-  componentDidUpdate = () => {
-    if (this.props.excelResponseDataFromNavBar) {
-      this.setState({ excelData: this.props.excelResponseDataFromNavBar.data });
-      const gallaries = [...this.state.excelData];
-      const catagories = [{ slno: "", brand: "All Brands" }, ...gallaries];
-      this.setState({ gallaries, catagories });
-    }
   };
 
   handlePageChange = (currentPage) => {
@@ -46,10 +36,13 @@ class Gallary extends Component {
 
   handleExcelData = (responseExcelData) => {
     this.setState({ excelData: responseExcelData.data });
-    this.props.onExcelData(responseExcelData);
     const gallaries = [...this.state.excelData];
     const catagories = [{ slno: "", brand: "All Brands" }, ...gallaries];
     this.setState({ gallaries, catagories });
+  };
+
+  handleUploadExcelRepeat = () => {
+    this.setState({ gallaries: [] });
   };
 
   render() {
@@ -80,7 +73,7 @@ class Gallary extends Component {
       return (
         <div className="row background-image">
           <UploadExcelFile onExcelData={this.handleExcelData} />
-          <h1>
+          <h1 className="m-1">
             There are no items in the pages Please upload the excel to file to
             view gallary
           </h1>
@@ -89,15 +82,23 @@ class Gallary extends Component {
 
     return (
       <div className="row">
+        {/* <SideBar/> */}
         <div className="col-3 background-image">
           <ListGroup
             items={catagories}
             selectedCatagory={selectedCatagory}
             onCatagoryChange={this.handleCatagoryChange}
           />
+         
         </div>
         <div className="col-9 background-image">
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
+          <button
+            className="btn btn-info m-3"
+            onClick={this.handleUploadExcelRepeat}
+          >
+            Upload Excel
+          </button>
           {paginatedGallaries.map((data) => (
             <div className="card card-style" key={data.slno}>
               <div className="card-body">
