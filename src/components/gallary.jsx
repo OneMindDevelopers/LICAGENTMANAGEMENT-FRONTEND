@@ -3,8 +3,6 @@ import ListGroup from "./list-group";
 import Pagination from "./pagination";
 import { paginate } from "./../utils/paginate";
 import SearchBox from "./../forms/searchBox";
-import UploadExcelFile from "./uploadFile/uploadFile";
-import SideBar from './sidebar';
 
 class Gallary extends Component {
   state = {
@@ -15,6 +13,8 @@ class Gallary extends Component {
     searchQuery: "",
     selectedCatagory: { slno: "", brand: "All Brands" },
     excelData: null,
+    excelErrorMessage: "",
+    initialCount: 0,
   };
 
   handlePageChange = (currentPage) => {
@@ -22,7 +22,6 @@ class Gallary extends Component {
   };
 
   handleCatagoryChange = (selectedCatagory) => {
-    console.log("selectedCatagory", selectedCatagory);
     this.setState({ selectedCatagory, currentPage: 1 });
   };
 
@@ -34,15 +33,19 @@ class Gallary extends Component {
     });
   };
 
-  handleExcelData = (responseExcelData) => {
-    this.setState({ excelData: responseExcelData.data });
-    const gallaries = [...this.state.excelData];
-    const catagories = [{ slno: "", brand: "All Brands" }, ...gallaries];
-    this.setState({ gallaries, catagories });
-  };
-
-  handleUploadExcelRepeat = () => {
-    this.setState({ gallaries: [] });
+  componentDidUpdate = (prevProps) => {
+    const { excelData, excelErrorMessage } = this.props;
+    if (excelData !== prevProps.excelData) {
+      if (excelData && excelData.length) {
+        const gallaries = [...excelData];
+        const catagories = [{ slno: "", brand: "All Brands" }, ...gallaries];
+        this.setState({ gallaries, catagories });
+      }
+      this.setState({ initialCount: this.state.initialCount + 1 });
+    }
+    if (excelErrorMessage !== prevProps.excelErrorMessage) {
+      this.setState({ excelErrorMessage });
+    }
   };
 
   render() {
@@ -53,6 +56,8 @@ class Gallary extends Component {
       catagories,
       selectedCatagory,
       searchQuery,
+      excelErrorMessage,
+      initialCount,
     } = this.state;
     let filtered = allGallaries;
     if (searchQuery) {
@@ -69,10 +74,17 @@ class Gallary extends Component {
     }
     const paginatedGallaries = paginate(filtered, currentPage, pageSize);
 
-    if (paginatedGallaries.length === 0 || allGallaries.length === 0)
+    if (excelErrorMessage && excelErrorMessage.length) {
+      return (
+        <div className="row background-image text-danger">
+          <h1 className="m-1">{excelErrorMessage}</h1>
+        </div>
+      );
+    }
+
+    if (initialCount === 0)
       return (
         <div className="row background-image">
-          <UploadExcelFile onExcelData={this.handleExcelData} />
           <h1 className="m-1">
             There are no items in the pages Please upload the excel to file to
             view gallary
@@ -89,16 +101,9 @@ class Gallary extends Component {
             selectedCatagory={selectedCatagory}
             onCatagoryChange={this.handleCatagoryChange}
           />
-         
         </div>
         <div className="col-9 background-image">
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          <button
-            className="btn btn-info m-3"
-            onClick={this.handleUploadExcelRepeat}
-          >
-            Upload Excel
-          </button>
           {paginatedGallaries.map((data) => (
             <div className="card card-style" key={data.slno}>
               <div className="card-body">

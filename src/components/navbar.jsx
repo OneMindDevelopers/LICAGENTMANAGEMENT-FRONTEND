@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
 import React, { Component } from "react";
+import UploadExcelFile from "../components/uploadFile/uploadFile";
+import ItemContext from "../context/itemContext";
 
 class NavBar extends Component {
   render() {
-    const { user,  } = this.props;
+    const { user } = this.props;
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-right">
         <NavLink className="navbar-brand" to="#">
@@ -45,6 +47,22 @@ class NavBar extends Component {
                   </NavLink>
                 </li>
               </React.Fragment>
+            )}
+            {user && (
+              <li className="left-40em">
+                <ItemContext.Consumer>
+                  {(itemContext) => (
+                    <UploadExcelFile
+                      onExcelData={(data) => {
+                        itemContext.handleExcelData(data);
+                      }}
+                      onExcelDataErrorMessage={(data) =>
+                        itemContext.handleExcelDataErrorMessage(data)
+                      }
+                    />
+                  )}
+                </ItemContext.Consumer>
+              </li>
             )}
           </ul>
         </div>

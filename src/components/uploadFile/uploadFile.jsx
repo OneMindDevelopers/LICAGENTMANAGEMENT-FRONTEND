@@ -21,8 +21,10 @@ function UploadExcelFile(props) {
     if (selectedFile) {
       if (selectedFile && fileType.includes(selectedFile.type)) {
         setExcelFile(selectedFile);
+        props.onExcelDataErrorMessage(excelFileError);
       } else {
         setExcelFileError("Please select only excel file types");
+        props.onExcelDataErrorMessage('Please select only excel file types');
         setExcelFile(null);
       }
     } else {
@@ -49,33 +51,19 @@ function UploadExcelFile(props) {
       {/* upload file section */}
       <div className="form">
         <form className="form-group" autoComplete="off" onSubmit={handleSubmit}>
-          <label>
-            <h5>Upload Excel file</h5>
-          </label>
-          <br></br>
           <input
             type="file"
-            className="form-control"
+            className="form-control float-left width-16em"
             onChange={handleFile}
             required
           ></input>
-          {excelFileError && (
-            <div className="text-danger" style={{ marginTop: 5 + "px" }}>
-              {excelFileError}
-            </div>
-          )}
-          <button
-            type="submit"
-            className="btn btn-success"
-            style={{ marginTop: 5 + "px" }}
-          >
+  
+          &nbsp; &nbsp;
+          <button type="submit" className="btn btn-success">
             Upload
           </button>
         </form>
       </div>
-
-      <br></br>
-      <hr></hr>
     </div>
   );
 }

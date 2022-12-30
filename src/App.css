@@ -96,3 +96,12 @@
 .width-80 {
   width: 80% !important;
 }
+
+.width-16em {
+  width: 16em !important;
+}
+
+.left-40em {
+  position: relative;
+  left: 40em !important;
+}
