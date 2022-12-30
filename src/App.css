@@ -103,3 +103,7 @@
   position: relative;
   left: 40em !important;
 }
+
+.float-left {
+  float:left;
+}
