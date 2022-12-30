@@ -63,13 +63,15 @@ class ForgotPassword extends Form {
           {isToastNotification && (
             <ToastNotification message={FORGORPASSWORD_TOAST_MESSAGE} />
           )}
+          <br></br>
+          <br></br>
           <h1 className="agent-login-style">{AGENT_FORGOTPASSWORD}</h1>
           <form onSubmit={this.handleSubmit}>
-            {this.displayInput("phone", "Phone")}
+            {this.displayInput("phone", "Mobile Number")}
             {this.displayInput("password", "Password", "password")}
             {this.displayInput(
               "confirmPassword",
-              "ConfirmPassword",
+              "Confirm Password",
               "password"
             )}
             {this.displayButton("Submit")}
