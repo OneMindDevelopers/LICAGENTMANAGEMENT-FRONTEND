@@ -111,3 +111,11 @@
 .width-80 {
   width:80% !important;
 }
+
+/* breadcrum */
+
+.custom-breadcrum-styles {
+  position: relative;
+  left:20px;
+  top:5px;
+}

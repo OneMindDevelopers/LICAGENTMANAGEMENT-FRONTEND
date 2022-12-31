@@ -3,6 +3,7 @@ import ListGroup from "./list-group";
 import Pagination from "./pagination";
 import { paginate } from "./../utils/paginate";
 import SearchBox from "./../forms/searchBox";
+import BreadCrum from "./breadcrum/breadcrum";
 
 class Gallary extends Component {
   state = {
@@ -59,7 +60,6 @@ class Gallary extends Component {
       excelErrorMessage,
       initialCount,
     } = this.state;
-    console.log("excelErrorMessage", excelErrorMessage);
     let filtered = allGallaries;
     if (searchQuery) {
       filtered = allGallaries.filter((m) =>
@@ -95,7 +95,7 @@ class Gallary extends Component {
 
     return (
       <div className="row">
-        {/* <SideBar/> */}
+        <BreadCrum label={"gallary"} />
         <div className="col-3 background-image">
           <ListGroup
             items={catagories}

@@ -38,9 +38,9 @@ class ForgotPassword extends Form {
     try {
       this.setState({ isToastNotification: true });
       await userService.forgotPassword(this.state.data);
-      // setTimeout(() => {
-      //   window.location = "/login";
-      // }, 3000);
+      setTimeout(() => {
+        window.location = "/login";
+      }, 3000);
     } catch (ex) {
       if (ex.response) {
         this.setState({ isToastNotification: false });
