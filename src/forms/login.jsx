@@ -52,10 +52,6 @@ class Login extends Form {
           {isToastNotification && (
             <ToastNotification message={LOGIN_TOAST_MESSAGE} />
           )}
-          <br></br>
-          <br></br>
-          <br></br>
-          <br></br>
           <h1 className="agent-login-style">{AGENT_LOGIN}</h1>
           <form onSubmit={this.handleSubmit}>
             {this.displayInput("phone", "Mobile Number")}

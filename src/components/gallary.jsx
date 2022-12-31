@@ -59,6 +59,7 @@ class Gallary extends Component {
       excelErrorMessage,
       initialCount,
     } = this.state;
+    console.log("excelErrorMessage", excelErrorMessage);
     let filtered = allGallaries;
     if (searchQuery) {
       filtered = allGallaries.filter((m) =>

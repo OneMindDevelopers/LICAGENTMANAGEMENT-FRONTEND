@@ -21,7 +21,7 @@ function UploadExcelFile(props) {
     if (selectedFile) {
       if (selectedFile && fileType.includes(selectedFile.type)) {
         setExcelFile(selectedFile);
-        props.onExcelDataErrorMessage(excelFileError);
+        props.onExcelDataErrorMessage(null);
       } else {
         setExcelFileError("Please select only excel file types");
         props.onExcelDataErrorMessage('Please select only excel file types');
