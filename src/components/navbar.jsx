@@ -7,7 +7,7 @@ class NavBar extends Component {
   render() {
     const { user } = this.props;
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-right">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <NavLink className="navbar-brand" to="#">
           LIC AGENT MANAGEMENT APP
         </NavLink>
