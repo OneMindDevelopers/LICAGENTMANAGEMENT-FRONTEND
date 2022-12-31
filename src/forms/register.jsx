@@ -29,7 +29,8 @@ class Registration extends Form {
     email: Joi.string().required().email().label("Email"),
     phone: Joi.string()
       .required()
-      .regex(/^[0-9]{10}$/).label('Phone Number'),
+      .regex(/^[0-9]{10}$/)
+      .label("Phone Number"),
     password: Joi.string().required().label("Password"),
     confirmPassword: Joi.string().required().label("Confirm Password"),
   };
@@ -62,6 +63,7 @@ class Registration extends Form {
           {isToastNotification && (
             <ToastNotification message={REGISTER_TOAST_MESSAGE} />
           )}
+
           <h1 className="agent-registration-style">{AGENT_REGISTRATION}</h1>
 
           <form onSubmit={this.handleSubmit}>

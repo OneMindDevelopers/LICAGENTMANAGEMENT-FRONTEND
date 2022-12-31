@@ -49,7 +49,7 @@
 
 .agent-login-style,
 .agent-registration-style {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   /* text-decoration: underline; */
   margin: 10px;
 }
@@ -66,7 +66,7 @@
 
 /* toast */
 .custom-translate-middle {
-  top: 65%;
+  top: 85%;
   left: 28%;
   position: relative;
 }
@@ -84,14 +84,14 @@
 .background-image {
   background-color: #d9afd9;
   background-image: linear-gradient(0deg, #d9afd9 0%, #97d9e1 100%);
-  height:42em;
+  height: 42em;
 }
 
 .black {
   color: black;
 }
 
-.text-left{
+.text-left {
   text-align: left;
 }
 
@@ -105,17 +105,17 @@
 }
 
 .float-left {
-  float:left;
+  float: left;
 }
 
 .width-80 {
-  width:80% !important;
+  width: 80% !important;
 }
 
 /* breadcrum */
 
 .custom-breadcrum-styles {
   position: relative;
-  left:20px;
-  top:5px;
+  left: 20px;
+  top: 5px;
 }
