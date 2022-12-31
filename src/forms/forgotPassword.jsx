@@ -23,15 +23,16 @@ class ForgotPassword extends Form {
   };
 
   schema = {
-    phone: Joi.string().required().label("Phone"),
-    password: Joi.string()
+    phone: Joi.string()
       .required()
-      .label("Password"),
+      .regex(/^[0-9]{10}$/)
+      .label("Phone Number"),
+    password: Joi.string().required().label("Password"),
     confirmPassword: Joi.string()
       .valid(Joi.ref("password"))
       .label("Confirm Password")
       .required()
-      .options({ language: { any: { allowOnly: 'must match password' } } })
+      .options({ language: { any: { allowOnly: "must match password" } } }),
   };
 
   doSubmit = async () => {

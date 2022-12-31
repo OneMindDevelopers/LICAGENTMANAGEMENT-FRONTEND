@@ -18,7 +18,9 @@ class Login extends Form {
   };
 
   schema = {
-    phone: Joi.string().required().label("Phone"),
+    phone: Joi.string()
+    .required()
+    .regex(/^[0-9]{10}$/).label('Phone Number'),
     password: Joi.string().required().label("Password"),
   };
 
