@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Joi from "joi-browser";
 import Input from "./input";
 import Select from "./select";
+import TextArea from './textArea';
 
 class Form extends Component {
   validateProperty = ({ name, value }) => {
@@ -39,6 +40,19 @@ class Form extends Component {
     this.setState({ errors: errors || {} });
     if (errors) return;
     this.doSubmit();
+  };
+
+  displayTextArea = (name, label) => {
+    const { data, errors } = this.state;
+    return (
+      <TextArea
+        name={name}
+        label={label}
+        value={data[name]}
+        handleValueChange={this.handleValueChange}
+        error={errors[name]}
+      />
+    );
   };
 
   displayInput = (name, label, type = "text", placeholderText) => {

@@ -41,6 +41,13 @@ class NavBar extends Component {
                     {user.name}
                   </NavLink>
                 </li>
+
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/agentRegister">
+                    Agent Registration
+                  </NavLink>
+                </li>
+
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/logout">
                     Logout

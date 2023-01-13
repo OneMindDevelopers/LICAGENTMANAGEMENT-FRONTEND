@@ -4,12 +4,7 @@ import * as uploadService from "../../services/uploadService";
 function UploadExcelFile(props) {
   // on change states
   const [excelFile, setExcelFile] = useState(null);
-  const [excelFileError, setExcelFileError] = useState(null);
-
-  // submit
-  const [excelData, setExcelData] = useState(null);
-  // it will contain array of objects
-
+  
   // handle File
   const fileType = [
     "application/vnd.ms-excel",
@@ -23,8 +18,7 @@ function UploadExcelFile(props) {
         setExcelFile(selectedFile);
         props.onExcelDataErrorMessage(null);
       } else {
-        setExcelFileError("Please select only excel file types");
-        props.onExcelDataErrorMessage('Please select only excel file types');
+        props.onExcelDataErrorMessage("Please select only excel file types");
         setExcelFile(null);
       }
     } else {
@@ -57,7 +51,6 @@ function UploadExcelFile(props) {
             onChange={handleFile}
             required
           ></input>
-  
           &nbsp; &nbsp;
           <button type="submit" className="btn btn-success">
             Upload

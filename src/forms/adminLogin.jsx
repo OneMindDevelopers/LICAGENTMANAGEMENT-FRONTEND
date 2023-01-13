@@ -1,46 +1,37 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./form";
-import * as userService from "../services/registrationService";
 import auth from "../services/authService";
-import ToastNotification from "./../common/toastNotification";
-import { AGENT_REGISTRATION, REGISTER_TOAST_MESSAGE } from "../constant";
+import { Redirect } from "react-router";
+import ToastNotification from "../common/toastNotification";
+import { LOGIN_TOAST_MESSAGE, ADMIN_LOGIN } from "../constant";
 import HomePageBackgroundImage from "../common/homePageBackgorundImage";
 
-class Registration extends Form {
+class AdminLogin extends Form {
   state = {
     data: {
-      name: "",
-      email: "",
       phone: "",
       password: "",
-      confirmPassword: "",
     },
     isToastNotification: false,
     errors: {},
   };
 
-  componentDidMount = () => {
-    this.setState({ isToastNotification: false });
-  };
-
   schema = {
-    name: Joi.string().required().label("Name"),
-    email: Joi.string().required().email().label("Email"),
     phone: Joi.string()
       .required()
       .regex(/^[0-9]{10}$/)
       .label("Phone Number"),
     password: Joi.string().required().label("Password"),
-    confirmPassword: Joi.string().required().label("Confirm Password"),
   };
 
   doSubmit = async () => {
     try {
-      await userService.register(this.state.data);
       this.setState({ isToastNotification: true });
+      const { data } = this.state;
+      await auth.login(data.phone, data.password);
       setTimeout(() => {
-        window.location = "/login";
+        window.location = "/gallary";
       }, 3000);
     } catch (ex) {
       if (ex.response) {
@@ -54,6 +45,7 @@ class Registration extends Form {
 
   render() {
     const { isToastNotification } = this.state;
+    if (auth.getCurrentUser()) return <Redirect to="/" />;
     return (
       <div className="row margin-top">
         <div className="col-6 border-right">
@@ -61,27 +53,27 @@ class Registration extends Form {
         </div>
         <div className="col-6 background-image">
           {isToastNotification && (
-            <ToastNotification message={REGISTER_TOAST_MESSAGE} />
+            <ToastNotification message={LOGIN_TOAST_MESSAGE} />
           )}
-
-          <h1 className="agent-registration-style">{AGENT_REGISTRATION}</h1>
-
+          <h1 className="agent-login-style">{ADMIN_LOGIN}</h1>
           <form onSubmit={this.handleSubmit}>
-            {this.displayInput("name", "Name")}
-            {this.displayInput("email", "Email", "email")}
             {this.displayInput("phone", "Mobile Number")}
             {this.displayInput("password", "Password", "password")}
-            {this.displayInput(
-              "confirmPassword",
-              "ConfirmPassword",
-              "password"
-            )}
-            {this.displayButton("Register")}
+            {this.displayButton("Login")}
           </form>
+          <span>
+            <a href="/register" className="black">
+              New User ?
+            </a>{" "}
+            &nbsp;
+            <a href="/forgotPassword" className="black">
+              Forgot Password ?
+            </a>
+          </span>
         </div>
       </div>
     );
   }
 }
 
-export default Registration;
+export default AdminLogin;
