@@ -8,9 +8,10 @@ import Logout from "./components/logout";
 import Gallary from "./components/gallary";
 import ForgotPassword from "./forms/forgotPassword";
 import ItemContext from "./context/itemContext";
-import AdminLogin from './forms/adminLogin';
+import AdminLogin from "./forms/adminLogin";
 import AdminRegistration from "./forms/adminRegister";
 import AgentRegistration from "./forms/agentRegister";
+import BillingPage from "./forms/billingPage";
 
 class App extends Component {
   state = {
@@ -60,6 +61,7 @@ class App extends Component {
               <Route path="/agentRegister" component={AgentRegistration} />
               <Route path="/login" component={AdminLogin} />
               <Route path="/forgotPassword" component={ForgotPassword} />
+              <Route path="/billing" exact component={BillingPage} />
               <Route path="/not-found" component={NotFound} />
               <Route path="/" exact component={AdminLogin} />
               <Redirect to="/not-found" />
