@@ -14,6 +14,7 @@ import AgentRegistration from "./forms/agentRegister";
 import BillingPage from "./forms/billingPage";
 import Thankyou from "./components/thankyou";
 import Demo from "./components/demo1";
+import BillingItemsContext from "./context/BillingItemsContext";
 
 class App extends Component {
   state = {
@@ -21,6 +22,7 @@ class App extends Component {
     excelData: null,
     excelErrorMessage: "",
     customername: "abhi",
+    selectedBillingItems: [],
   };
 
   componentDidMount = () => {
@@ -36,31 +38,38 @@ class App extends Component {
     this.setState({ excelErrorMessage });
   };
 
+  handleSelectedItems = (selectedItems) => {
+    this.setState({ selectedBillingItems: selectedItems });
+  };
+
   render() {
+    console.log("selectedItems app 123", this.state.selectedBillingItems);
     const { user, excelData, excelErrorMessage } = this.state;
     return (
       <div className="App">
-        <ItemContext.Provider
-          value={{
-            handleExcelData: this.handleExcelData,
-            handleExcelDataErrorMessage: this.handleExcelDataErrorMessage,
-          }}
-        >
-          <Navbar user={user} />
-          <main className="container-fluid">
-            <Switch>
-              <Route
-                path="/gallary"
-                render={(props) => (
-                  <Gallary
-                    excelData={excelData}
-                    excelErrorMessage={excelErrorMessage}
-                    {...props}
-                  />
-                )}
-              />
-              <Route path="/thankyou" component={Thankyou} />
-              {/* <Route
+        <BillingItemsContext.Provider value={this.state.selectedBillingItems}>
+          <ItemContext.Provider
+            value={{
+              handleExcelData: this.handleExcelData,
+              handleExcelDataErrorMessage: this.handleExcelDataErrorMessage,
+            }}
+          >
+            <Navbar user={user} />
+            <main className="container-fluid">
+              <Switch>
+                <Route
+                  path="/gallary"
+                  render={(props) => (
+                    <Gallary
+                      excelData={excelData}
+                      excelErrorMessage={excelErrorMessage}
+                      onSelectItems={this.handleSelectedItems}
+                      {...props}
+                    />
+                  )}
+                />
+                <Route path="/thankyou" component={Thankyou} />
+                {/* <Route
                 path="/thankyou/:id"
                 render={(props) => {
                   <Thankyou
@@ -69,19 +78,29 @@ class App extends Component {
                   />;
                 }}
               /> */}
-              <Route path="/demo1" component={Demo} />
-              <Route path="/logout" component={Logout} />
-              <Route path="/register" component={AdminRegistration} />
-              <Route path="/agentRegister" component={AgentRegistration} />
-              <Route path="/login" component={AdminLogin} />
-              <Route path="/forgotPassword" component={ForgotPassword} />
-              <Route path="/billing" exact component={BillingPage} />
-              <Route path="/not-found" component={NotFound} />
-              <Route path="/" exact component={AdminLogin} />
-              <Redirect to="/not-found" />
-            </Switch>
-          </main>
-        </ItemContext.Provider>
+                <Route path="/demo1" component={Demo} />
+                <Route path="/logout" component={Logout} />
+                <Route path="/register" component={AdminRegistration} />
+                <Route path="/agentRegister" component={AgentRegistration} />
+                <Route path="/login" component={AdminLogin} />
+                <Route path="/forgotPassword" component={ForgotPassword} />
+                {/* <Route path="/billing" component={BillingPage} /> */}
+                <Route
+                  path="/billing"
+                  render={(props) => (
+                    <BillingPage
+                      billingItems={this.state.selectedBillingItems}
+                      {...props}
+                    />
+                  )}
+                />
+                <Route path="/not-found" component={NotFound} />
+                <Route path="/" exact component={AdminLogin} />
+                <Redirect to="/not-found" />
+              </Switch>
+            </main>
+          </ItemContext.Provider>
+        </BillingItemsContext.Provider>
       </div>
     );
   }

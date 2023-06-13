@@ -17,7 +17,7 @@ class BillingPage extends Component {
     billingItems.forEach((billingItem) => {
       totalQty = totalQty + billingItem.qty;
       totalItems = totalItems + 1;
-      totalPrice = totalPrice + (billingItem.price * billingItem.qty);
+      totalPrice = totalPrice + billingItem.price * billingItem.qty;
     });
 
     this.setState({ billingItems, totalQty, totalItems, totalPrice });
@@ -55,16 +55,15 @@ class BillingPage extends Component {
       billingItems.forEach((billingItem) => {
         totalQty = totalQty + billingItem.qty;
         totalItems = totalItems + 1;
-        totalPrice = totalPrice + (billingItem.price * billingItem.qty);
+        totalPrice = totalPrice + billingItem.price * billingItem.qty;
       });
       this.setState({ totalQty, totalItems, totalPrice });
     }
   };
 
   render() {
+    console.log("billing Items abc", this.props.billingItems);
     const { billingItems } = this.state;
-    console.log("billingItems", billingItems);
-    console.log("qty", this.state.totalQty);
     return (
       <React.Fragment>
         <h1>Order Summary</h1>

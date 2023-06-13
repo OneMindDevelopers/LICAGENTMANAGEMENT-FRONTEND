@@ -4,10 +4,12 @@ import Pagination from "./pagination";
 import { paginate } from "./../utils/paginate";
 import SearchBox from "./../forms/searchBox";
 import BreadCrum from "./breadcrum/breadcrum";
+import BillingPage from "../forms/billingPage";
 
 class Gallary extends Component {
   state = {
     gallaries: [],
+    selectedItems: [],
     pageSize: 9,
     currentPage: 1,
     catagories: [],
@@ -16,6 +18,7 @@ class Gallary extends Component {
     excelData: null,
     excelErrorMessage: "",
     initialCount: 0,
+    isNavigateToBillingComponent: false,
   };
 
   handlePageChange = (currentPage) => {
@@ -47,6 +50,39 @@ class Gallary extends Component {
     if (excelErrorMessage !== prevProps.excelErrorMessage) {
       this.setState({ excelErrorMessage });
     }
+  };
+
+  handleAdditionItem = (selectedItem) => {
+    const gallaries = [...this.state.gallaries];
+    const index = gallaries.indexOf(selectedItem);
+    gallaries[index].quantity = gallaries[index].quantity + 1;
+
+    this.setState({ gallaries });
+  };
+
+  handleDeletionItem = (selectedItem) => {
+    const gallaries = [...this.state.gallaries];
+    const index = gallaries.indexOf(selectedItem);
+    gallaries[index].quantity = gallaries[index].quantity - 1;
+    this.setState({ gallaries });
+  };
+
+  handleItemSelection = (event, item) => {
+    const isChecked = event.target.checked;
+    let selectedItems = [...this.state.selectedItems];
+    if (isChecked) {
+      this.setState({ selectedItems: this.state.selectedItems.concat(item) });
+    } else {
+      const filteredItems = selectedItems.filter(
+        (selectedItem) => selectedItem.slno !== item.slno
+      );
+      this.setState({ selectedItems: filteredItems });
+    }
+  };
+
+  navigateToBillingComponent = () => {
+    this.props.onSelectItems(this.state.selectedItems);
+    window.location = "/billing";
   };
 
   render() {
@@ -105,24 +141,66 @@ class Gallary extends Component {
         </div>
         <div className="col-9 background-image">
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
-          {paginatedGallaries.map((data) => (
-            <div className="card card-style" key={data.slno}>
+          {/* {paginatedGallaries.map((data) => (
+            <h1 onClick={(data)=>{this.handleDemo(data)}}>{data.brand}</h1>
+          ))} */}
+          {paginatedGallaries.map((item) => (
+            <div className="card card-style" key={item.slno}>
               <div className="card-body">
-                <h5 className="card-title">{data.brand}</h5>
+                <h5 className="card-title">{item.brand}</h5>
+                <input
+                  type="checkbox"
+                  onChange={(event) => {
+                    this.handleItemSelection(event, item);
+                  }}
+                />
                 <p className="card-text">
                   This is a longer card with supporting text below as a natural
                   lead-in to additional content. This content is a little bit
                   longer.
                 </p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="26"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-file-plus-fill"
+                  viewBox="0 0 16 16"
+                  onClick={() => {
+                    this.handleAdditionItem(item);
+                  }}
+                >
+                  <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM8.5 6v1.5H10a.5.5 0 0 1 0 1H8.5V10a.5.5 0 0 1-1 0V8.5H6a.5.5 0 0 1 0-1h1.5V6a.5.5 0 0 1 1 0z" />
+                </svg>
+                <input type="text" className="width-40" value={item.quantity} />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="currentColor"
+                  class="bi bi-file-minus-fill"
+                  viewBox="0 0 16 16"
+                  onClick={() => {
+                    this.handleDeletionItem(item);
+                  }}
+                >
+                  <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM6 7.5h4a.5.5 0 0 1 0 1H6a.5.5 0 0 1 0-1z" />
+                </svg>
+                <p>Size: {item.size}</p>
+                <p>Price: {item.price}</p>
               </div>
             </div>
           ))}
+
           <Pagination
             items={filtered}
             pageSize={pageSize}
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
           />
+          <button onClick={this.navigateToBillingComponent}>
+            Continue to Billing Page
+          </button>
         </div>
       </div>
     );
