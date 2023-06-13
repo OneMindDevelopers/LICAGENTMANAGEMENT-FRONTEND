@@ -12,12 +12,15 @@ import AdminLogin from "./forms/adminLogin";
 import AdminRegistration from "./forms/adminRegister";
 import AgentRegistration from "./forms/agentRegister";
 import BillingPage from "./forms/billingPage";
+import Thankyou from "./components/thankyou";
+import Demo from "./components/demo1";
 
 class App extends Component {
   state = {
     user: null,
     excelData: null,
     excelErrorMessage: "",
+    customername: "abhi",
   };
 
   componentDidMount = () => {
@@ -56,6 +59,17 @@ class App extends Component {
                   />
                 )}
               />
+              <Route path="/thankyou" component={Thankyou} />
+              {/* <Route
+                path="/thankyou/:id"
+                render={(props) => {
+                  <Thankyou
+                    customername={this.state.customername}
+                    {...props}
+                  />;
+                }}
+              /> */}
+              <Route path="/demo1" component={Demo} />
               <Route path="/logout" component={Logout} />
               <Route path="/register" component={AdminRegistration} />
               <Route path="/agentRegister" component={AgentRegistration} />
