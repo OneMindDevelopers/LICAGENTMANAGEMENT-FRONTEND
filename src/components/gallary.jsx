@@ -4,7 +4,8 @@ import Pagination from "./pagination";
 import { paginate } from "./../utils/paginate";
 import SearchBox from "./../forms/searchBox";
 import BreadCrum from "./breadcrum/breadcrum";
-import BillingPage from "../forms/billingPage";
+import BillingPage from "./billingPage";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 class Gallary extends Component {
   state = {
@@ -81,8 +82,10 @@ class Gallary extends Component {
   };
 
   navigateToBillingComponent = () => {
+    //window.location = "/billing";
+
+    this.props.history.push("/billing");
     this.props.onSelectItems(this.state.selectedItems);
-    window.location = "/billing";
   };
 
   render() {

@@ -11,10 +11,11 @@ import ItemContext from "./context/itemContext";
 import AdminLogin from "./forms/adminLogin";
 import AdminRegistration from "./forms/adminRegister";
 import AgentRegistration from "./forms/agentRegister";
-import BillingPage from "./forms/billingPage";
+import BillingPage from "./components/billingPage";
 import Thankyou from "./components/thankyou";
 import Demo from "./components/demo1";
 import BillingItemsContext from "./context/BillingItemsContext";
+import BillingSectionComponent from "./components/billingSection";
 
 class App extends Component {
   state = {
@@ -85,7 +86,7 @@ class App extends Component {
                 <Route path="/login" component={AdminLogin} />
                 <Route path="/forgotPassword" component={ForgotPassword} />
                 {/* <Route path="/billing" component={BillingPage} /> */}
-                <Route
+                {/* <Route
                   path="/billing"
                   render={(props) => (
                     <BillingPage
@@ -93,7 +94,8 @@ class App extends Component {
                       {...props}
                     />
                   )}
-                />
+                /> */}
+                <Route path="/billing" component={BillingSectionComponent} />
                 <Route path="/not-found" component={NotFound} />
                 <Route path="/" exact component={AdminLogin} />
                 <Redirect to="/not-found" />
