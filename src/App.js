@@ -16,6 +16,7 @@ import Thankyou from "./components/thankyou";
 import Demo from "./components/demo1";
 import BillingItemsContext from "./context/BillingItemsContext";
 import BillingSectionComponent from "./components/billingSection";
+import GallarySection from "./components/gallarysection";
 
 class App extends Component {
   state = {
@@ -24,6 +25,7 @@ class App extends Component {
     excelErrorMessage: "",
     customername: "abhi",
     selectedBillingItems: [],
+    editBillingItems: [],
   };
 
   componentDidMount = () => {
@@ -43,9 +45,12 @@ class App extends Component {
     this.setState({ selectedBillingItems: selectedItems });
   };
 
+  handleEditOptionBillingPage = (editBillingItems) => {
+    this.setState({ editBillingItems });
+  };
+
   render() {
-    console.log("selectedItems app 123", this.state.selectedBillingItems);
-    const { user, excelData, excelErrorMessage } = this.state;
+    const { user, excelData, excelErrorMessage, editBillingItems } = this.state;
     return (
       <div className="App">
         <BillingItemsContext.Provider value={this.state.selectedBillingItems}>
@@ -61,15 +66,15 @@ class App extends Component {
                 <Route
                   path="/gallary"
                   render={(props) => (
-                    <Gallary
+                    <GallarySection
                       excelData={excelData}
                       excelErrorMessage={excelErrorMessage}
+                      editBillingItems={editBillingItems}
                       onSelectItems={this.handleSelectedItems}
                       {...props}
                     />
                   )}
                 />
-                <Route path="/thankyou" component={Thankyou} />
                 {/* <Route
                 path="/thankyou/:id"
                 render={(props) => {
@@ -95,7 +100,16 @@ class App extends Component {
                     />
                   )}
                 /> */}
-                <Route path="/billing" component={BillingSectionComponent} />
+                {/* <Route path="/billing" component={BillingSectionComponent} /> */}
+                <Route
+                  path="/billing"
+                  render={(props) => (
+                    <BillingSectionComponent
+                      OnEditOptionBillingPage={this.handleEditOptionBillingPage}
+                      {...props}
+                    />
+                  )}
+                />
                 <Route path="/not-found" component={NotFound} />
                 <Route path="/" exact component={AdminLogin} />
                 <Redirect to="/not-found" />

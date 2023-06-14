@@ -1,10 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import { getBillingItems } from "../services/fakeBillingItemsService";
 import BillingItemsContext from "../context/BillingItemsContext";
 
-const BillingSectionComponent = () => {
+const BillingSectionComponent = ({ OnEditOptionBillingPage, history }) => {
   const billingItemsContext = useContext(BillingItemsContext);
-  console.log("billingItemsContext", billingItemsContext);
   const [billingItems, setBillingItems] = useState(billingItemsContext);
   const [totalQty, setTotalQty] = useState();
   const [totalItems, setTotalItems] = useState();
@@ -61,14 +59,25 @@ const BillingSectionComponent = () => {
     setBillingItems(billingItems);
   };
 
+  const handleEditOptionBillingPage = () => {
+    history.push("/gallary");
+    OnEditOptionBillingPage(billingItems);
+  };
+
   return (
     <React.Fragment>
       <h1>Order Summary</h1>
       <div className="row">
         <div className="jumbotron  mt-5 col-6 ">
+          <button
+            className="editbutton_billingpage"
+            onClick={handleEditOptionBillingPage}
+          >
+            Edit the Selected Items
+          </button>
           {billingItems.map((billingItem) => (
             <div
-              className="card billing-card-width float-left m-2"
+              className="card billing-card-width float-left m-5"
               key={billingItem._id}
             >
               <div className="card-body">

@@ -48,3 +48,9 @@ code {
 .background-white {
   background-color:#fff
 }
+
+/* billing page */
+.editbutton_billingpage {
+  position:relative;
+  bottom:39px;
+}

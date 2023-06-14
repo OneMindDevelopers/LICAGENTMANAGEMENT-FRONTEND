@@ -31,7 +31,6 @@ function UploadExcelFile(props) {
     e.preventDefault();
     if (excelFile !== null) {
       const formData = new FormData();
-      console.log("excelfile", excelFile);
       formData.append("xlsx", excelFile);
       const excelResponseData = await uploadService.uploadFile(formData);
       if (excelResponseData) {

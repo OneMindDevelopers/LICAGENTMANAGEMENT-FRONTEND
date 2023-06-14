@@ -39,7 +39,7 @@ class Gallary extends Component {
   };
 
   componentDidUpdate = (prevProps) => {
-    const { excelData, excelErrorMessage } = this.props;
+    const { excelData, excelErrorMessage, editBillingItems } = this.props;
     if (excelData !== prevProps.excelData) {
       if (excelData && excelData.length) {
         const gallaries = [...excelData];
@@ -50,6 +50,10 @@ class Gallary extends Component {
     }
     if (excelErrorMessage !== prevProps.excelErrorMessage) {
       this.setState({ excelErrorMessage });
+    }
+
+    if (editBillingItems !== prevProps.editBillingItems) {
+      console.log("editBillingItems", editBillingItems);
     }
   };
 

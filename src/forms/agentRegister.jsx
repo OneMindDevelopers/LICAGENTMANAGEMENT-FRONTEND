@@ -59,7 +59,6 @@ class AgentRegistration extends Form {
       agentRegistration.nominee.address = data.address;
       agentRegistration.nominee.relationship = data.relationship;
 
-      console.log('aganet REgistration',agentRegistration);
 
       await userService.agentRegistration(agentRegistration);
       this.setState({ isToastNotification: true });

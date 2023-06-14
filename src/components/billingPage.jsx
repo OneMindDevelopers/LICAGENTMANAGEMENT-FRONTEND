@@ -62,7 +62,6 @@ class BillingPage extends Component {
   };
 
   render() {
-    console.log("billing Items abc", this.props.billingItems);
     const { billingItems } = this.state;
     return (
       <React.Fragment>
