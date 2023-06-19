@@ -22,6 +22,7 @@ const ConfirmationSectionComponent = () => {
       totalPrice = totalPrice + item.price * item.quantity;
     });
     setTotalPrice(totalPrice);
+    console.log("billingItemsContext", billingItemsContext);
   }, [billingItemsContext]);
 
   return (
@@ -90,7 +91,29 @@ const ConfirmationSectionComponent = () => {
         <div>Phone Number of the Customer is: {values.customerPhoneNumber}</div>
       )}
       <br />
-      {billingItemsContext.map((item) => (
+      <table className="table">
+        <thead className="thead-dark">
+          <tr>
+            <th>Sl No</th>
+            <th>Brand</th>
+            <th>Category</th>
+            <th>Size</th>
+            <th>Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          {billingItemsContext.map((item) => (
+            <tr key={item.slno}>
+              <td>{item.slno}</td>
+              <td>{item.brand}</td>
+              <td>{item.category}</td>
+              <td>{item.size}</td>
+              <td>{item.size * item.quantity}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      {/* {billingItemsContext.map((item) => (
         <>
           <ul>
             <li>
@@ -102,8 +125,8 @@ const ConfirmationSectionComponent = () => {
             </li>
           </ul>
         </>
-      ))}
-      <div>{`Total Price: ${totalPrice}`}</div>
+      ))} */}
+      <div className="text-right">{`Total Price: ${totalPrice}`}</div>
     </>
   );
 };

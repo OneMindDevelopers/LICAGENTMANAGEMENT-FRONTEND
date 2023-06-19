@@ -136,7 +136,7 @@ const BillingSectionComponent = ({ OnEditOptionBillingPage, history }) => {
         </div>
       </div>
       <button onClick={navigateToconfirmComponent}>
-          Continue to Billing Page
+          Continue to Confirmation Page
         </button>
     </React.Fragment>
   );
