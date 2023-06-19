@@ -88,6 +88,8 @@ const GallarySection = ({
     }
     setGallaries(gallaries);
 
+    //handleItemSelection(selectedItem.isChecked, selectedItem);
+
     let filtered = [...gallaries];
     if (searchQuery) {
       filtered = gallaries.filter((m) =>
@@ -102,6 +104,7 @@ const GallarySection = ({
           : gallaries;
     }
     setFilteredGallaries(filtered);
+
     const paginatedGallaries = paginate(filtered, currentPage, pageSize);
     setPaginatedGallaries(paginatedGallaries);
   };

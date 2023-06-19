@@ -64,6 +64,11 @@ const BillingSectionComponent = ({ OnEditOptionBillingPage, history }) => {
     OnEditOptionBillingPage(billingItems);
   };
 
+  const navigateToconfirmComponent = () => {
+    history.push("/confirm");
+ 
+  }
+
   return (
     <React.Fragment>
       <h1>Order Summary</h1>
@@ -130,6 +135,9 @@ const BillingSectionComponent = ({ OnEditOptionBillingPage, history }) => {
           <p> Total Price: {totalPrice}</p>
         </div>
       </div>
+      <button onClick={navigateToconfirmComponent}>
+          Continue to Billing Page
+        </button>
     </React.Fragment>
   );
 };

@@ -17,6 +17,8 @@ import Demo from "./components/demo1";
 import BillingItemsContext from "./context/BillingItemsContext";
 import BillingSectionComponent from "./components/billingSection";
 import GallarySection from "./components/gallarysection";
+import ConfirmationSection from "./components/confirmationSection";
+import ConfirmationSectionComponent from "./components/confirmationSection";
 
 class App extends Component {
   state = {
@@ -90,6 +92,10 @@ class App extends Component {
                 <Route path="/agentRegister" component={AgentRegistration} />
                 <Route path="/login" component={AdminLogin} />
                 <Route path="/forgotPassword" component={ForgotPassword} />
+                <Route
+                  path="/confirm"
+                  component={ConfirmationSectionComponent}
+                />
                 {/* <Route path="/billing" component={BillingPage} /> */}
                 {/* <Route
                   path="/billing"
