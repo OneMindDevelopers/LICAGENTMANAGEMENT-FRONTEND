@@ -11,8 +11,10 @@ export function agentRegistration(user) {
   return http.post(agentEndpoint + "registration", user);
 }
 
+export function getAgentRegistration(user) {
+  return http.get(agentEndpoint + "getAgents");
+}
+
 export function forgotPassword(user) {
   return http.post(apiEndpoint + "forgotPassword", user);
 }
-
-

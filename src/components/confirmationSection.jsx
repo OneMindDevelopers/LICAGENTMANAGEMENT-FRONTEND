@@ -1,8 +1,13 @@
 import React, { Component, useContext, useEffect, useState } from "react";
 import BillingItemsContext from "../context/BillingItemsContext";
+import * as userService from "../services/registrationService";
 
 const ConfirmationSectionComponent = () => {
+  const DISCOUNT_PERCENTAGE = 15;
   const billingItemsContext = useContext(BillingItemsContext);
+  const [agentList, setAgentList] = useState([]);
+  const [isAgentRegistered, setIsAgentRegistered] = useState(false);
+  const [registeredAgent, setRegisteredAgent] = useState({});
   const [values, setValues] = useState({
     agentId: "",
     customerName: "",
@@ -21,9 +26,35 @@ const ConfirmationSectionComponent = () => {
     billingItemsContext.forEach((item) => {
       totalPrice = totalPrice + item.price * item.quantity;
     });
-    setTotalPrice(totalPrice);
+    if (!isAgentRegistered) {
+      setTotalPrice(totalPrice);
+    } else {
+      let discountAmount = DISCOUNT_PERCENTAGE / 100;
+      const totalAmountAfterDiscount = totalPrice - totalPrice * discountAmount;
+      setTotalPrice(totalAmountAfterDiscount);
+    }
+
     console.log("billingItemsContext", billingItemsContext);
-  }, [billingItemsContext]);
+  }, [billingItemsContext, totalPrice, isAgentRegistered]);
+
+  useEffect(() => {
+    userService
+      .getAgentRegistration()
+      .then((res) => {
+        setAgentList(res.data);
+      })
+      .catch((error) => {
+        console.info("Something went wrong", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    const registeredAgent = agentList.find(
+      (agent) => agent.agentId === values.agentId
+    );
+    setIsAgentRegistered(registeredAgent);
+    setRegisteredAgent(registeredAgent);
+  }, [agentList, values.agentId]);
 
   return (
     <>
@@ -45,7 +76,25 @@ const ConfirmationSectionComponent = () => {
             />
           </div>
         </div>
-        <div className="col-md-6"></div>
+        {!values.agentId && <div className="col-md-6"></div>}
+        {values.agentId && (
+          <div className="col-md-6">
+            {isAgentRegistered && (
+              <div className="alert alert-primary m-2" role="alert">
+                The Customer is registered with the Agent{" "}
+                <span style={{ fontWeight: "bold" }}>
+                  {registeredAgent?.agentName}
+                </span>
+              </div>
+            )}
+            {!isAgentRegistered && (
+              <div className="alert alert-primary m-2" role="alert">
+                The Customer is not registered with any agent
+                {registeredAgent?.agentName}
+              </div>
+            )}
+          </div>
+        )}
         <div className="col-md-6">
           <div className="form-group">
             <label className="form-label" name="customerName">
@@ -91,41 +140,36 @@ const ConfirmationSectionComponent = () => {
         <div>Phone Number of the Customer is: {values.customerPhoneNumber}</div>
       )}
       <br />
-      <table className="table">
-        <thead className="thead-dark">
-          <tr>
-            <th>Sl No</th>
-            <th>Brand</th>
-            <th>Category</th>
-            <th>Size</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {billingItemsContext.map((item) => (
-            <tr key={item.slno}>
-              <td>{item.slno}</td>
-              <td>{item.brand}</td>
-              <td>{item.category}</td>
-              <td>{item.size}</td>
-              <td>{item.size * item.quantity}</td>
+      {billingItemsContext && (
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th>Sl No</th>
+              <th>Brand</th>
+              <th>Category</th>
+              <th>Size</th>
+              <th>Quantity</th>
+              <th>Price</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-      {/* {billingItemsContext.map((item) => (
-        <>
-          <ul>
-            <li>
-              <span className="float-left">{`BRAND : ${item.brand} CATEGORY: ${item.category} SIZE: ${item.size}`}</span>{" "}
-              <span className="text-center">{`PRICE: ${item.price} * ${item.quantity} = `}</span>{" "}
-              <span className="float-right">{`${
-                item.price * item.quantity
-              }`}</span>
-            </li>
-          </ul>
-        </>
-      ))} */}
+          </thead>
+          <tbody>
+            {billingItemsContext.map((item) => (
+              <tr key={item.slno}>
+                <td>{item.slno}</td>
+                <td>{item.brand}</td>
+                <td>{item.category}</td>
+                <td>{item.size}</td>
+                <td>{item.quantity}</td>
+                <td>{item.size * item.quantity}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {isAgentRegistered && (
+        <div className="text-right">{`Discount Appiled: 15 %`}</div>
+      )}
       <div className="text-right">{`Total Price: ${totalPrice}`}</div>
     </>
   );
