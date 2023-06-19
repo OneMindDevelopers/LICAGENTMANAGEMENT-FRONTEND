@@ -47,18 +47,17 @@ class AgentRegistration extends Form {
 
   doSubmit = async () => {
     try {
-      const data = [...this.state.data];
+      const data = { ...this.state.data };
       let agentRegistration = {};
       agentRegistration.name = data.name;
       agentRegistration.agentID = data.agentID;
-      agentRegistration.agentID = data.phone;
+      agentRegistration.phone = data.phone;
       agentRegistration.email = data.email;
       agentRegistration.nominee = {};
       agentRegistration.nominee.name = data.nomineeName;
       agentRegistration.nominee.mobile = data.mobile;
       agentRegistration.nominee.address = data.address;
       agentRegistration.nominee.relationship = data.relationship;
-
 
       await userService.agentRegistration(agentRegistration);
       this.setState({ isToastNotification: true });
