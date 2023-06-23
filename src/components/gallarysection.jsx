@@ -90,34 +90,34 @@ const GallarySection = ({
   const handleDeletionItem = (selectedItem) => {
     setIsItemModified(true);
     const index = gallaries.indexOf(selectedItem);
-    gallaries[index].quantity = gallaries[index].quantity - 1;
+
     if (gallaries[index].quantity <= 0) {
       alert("Cannot decrement the item behind 0");
-      return;
-    }
-    setGallaries(gallaries);
-
-    let filtered = [...gallaries];
-    if (searchQuery) {
-      filtered = gallaries.filter((m) =>
-        m.brand.toLowerCase().startsWith(searchQuery.toLowerCase())
-      );
     } else {
-      filtered =
-        selectedCatagory && selectedCatagory.slno
-          ? gallaries.filter(
-              (gallary) => gallary.name === selectedCatagory.name
-            )
-          : gallaries;
-    }
-    setFilteredGallaries(filtered);
+      setGallaries(gallaries);
+      gallaries[index].quantity = gallaries[index].quantity - 1;
+      let filtered = [...gallaries];
+      if (searchQuery) {
+        filtered = gallaries.filter((m) =>
+          m.brand.toLowerCase().startsWith(searchQuery.toLowerCase())
+        );
+      } else {
+        filtered =
+          selectedCatagory && selectedCatagory.slno
+            ? gallaries.filter(
+                (gallary) => gallary.name === selectedCatagory.name
+              )
+            : gallaries;
+      }
+      setFilteredGallaries(filtered);
 
-    const paginatedGallaries = paginate(filtered, currentPage, pageSize);
-    setPaginatedGallaries(paginatedGallaries);
-    const filteredSelectedItems = paginatedGallaries.filter(
-      (gallary) => gallary.quantity > 0
-    );
-    setSelectedItems(filteredSelectedItems);
+      const paginatedGallaries = paginate(filtered, currentPage, pageSize);
+      setPaginatedGallaries(paginatedGallaries);
+      const filteredSelectedItems = paginatedGallaries.filter(
+        (gallary) => gallary.quantity > 0
+      );
+      setSelectedItems(filteredSelectedItems);
+    }
   };
 
   // const handleItemSelection = (event, item) => {
