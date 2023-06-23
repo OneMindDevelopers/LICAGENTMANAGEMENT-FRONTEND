@@ -77,16 +77,7 @@ class App extends Component {
                     />
                   )}
                 />
-                {/* <Route
-                path="/thankyou/:id"
-                render={(props) => {
-                  <Thankyou
-                    customername={this.state.customername}
-                    {...props}
-                  />;
-                }}
-              /> */}
-                <Route path="/demo1" component={Demo} />
+
                 <Route path="/logout" component={Logout} />
                 <Route path="/register" component={AdminRegistration} />
                 <Route path="/agentRegister" component={AgentRegistration} />
@@ -96,17 +87,7 @@ class App extends Component {
                   path="/confirm"
                   component={ConfirmationSectionComponent}
                 />
-                {/* <Route path="/billing" component={BillingPage} /> */}
-                {/* <Route
-                  path="/billing"
-                  render={(props) => (
-                    <BillingPage
-                      billingItems={this.state.selectedBillingItems}
-                      {...props}
-                    />
-                  )}
-                /> */}
-                {/* <Route path="/billing" component={BillingSectionComponent} /> */}
+
                 <Route
                   path="/billing"
                   render={(props) => (

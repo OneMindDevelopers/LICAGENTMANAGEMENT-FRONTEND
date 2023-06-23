@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { paginate } from "../utils/paginate";
 import BreadCrum from "./breadcrum/breadcrum";
 import ListGroup from "./list-group";
 import SearchBox from "../forms/searchBox";
 import Pagination from "./pagination";
+import BillingItemsContext from "../context/BillingItemsContext";
 
 const GallarySection = ({
   excelData,
@@ -12,6 +13,7 @@ const GallarySection = ({
   history,
   onSelectItems,
 }) => {
+  const billingItemsContext = useContext(BillingItemsContext);
   const [gallaries, setGallaries] = useState([]);
   const [paginatedGallaries, setPaginatedGallaries] = useState([]);
   const [filteredGallaries, setFilteredGallaries] = useState([]);
@@ -28,6 +30,7 @@ const GallarySection = ({
   const [initialCount, setInitialCount] = useState(0);
   const [isNavigateToBillingComponent, setIsNavigateToBillingComponent] =
     useState(false);
+  const [isItemModified, setIsItemModified] = useState(false);
 
   const handlePageChange = (currentPage) => {
     setCurrentPage(currentPage);
@@ -57,6 +60,7 @@ const GallarySection = ({
   }, [excelData, excelErrorMessage]);
 
   const handleAdditionItem = (selectedItem) => {
+    setIsItemModified(true);
     const index = gallaries.indexOf(selectedItem);
     gallaries[index].quantity = gallaries[index].quantity + 1;
     setGallaries(gallaries);
@@ -77,9 +81,14 @@ const GallarySection = ({
     setFilteredGallaries(filtered);
     const paginatedGallaries = paginate(filtered, currentPage, pageSize);
     setPaginatedGallaries(paginatedGallaries);
+    const filteredSelectedItems = paginatedGallaries.filter(
+      (gallary) => gallary.quantity > 0
+    );
+    setSelectedItems(filteredSelectedItems);
   };
 
   const handleDeletionItem = (selectedItem) => {
+    setIsItemModified(true);
     const index = gallaries.indexOf(selectedItem);
     gallaries[index].quantity = gallaries[index].quantity - 1;
     if (gallaries[index].quantity <= 0) {
@@ -87,8 +96,6 @@ const GallarySection = ({
       return;
     }
     setGallaries(gallaries);
-
-    //handleItemSelection(selectedItem.isChecked, selectedItem);
 
     let filtered = [...gallaries];
     if (searchQuery) {
@@ -107,28 +114,32 @@ const GallarySection = ({
 
     const paginatedGallaries = paginate(filtered, currentPage, pageSize);
     setPaginatedGallaries(paginatedGallaries);
+    const filteredSelectedItems = paginatedGallaries.filter(
+      (gallary) => gallary.quantity > 0
+    );
+    setSelectedItems(filteredSelectedItems);
   };
 
-  const handleItemSelection = (event, item) => {
-    const isChecked = event.target.checked;
-    //let selectedItems = [...selectedItems];
-    if (isChecked) {
-      //this.setState({ selectedItems: this.state.selectedItems.concat(item) });
-      setSelectedItems([...selectedItems, { ...item }]);
-    } else {
-      const filteredItems = selectedItems.filter(
-        (selectedItem) => selectedItem.slno !== item.slno
-      );
-      //this.setState({ selectedItems: filteredItems });
-      setSelectedItems(filteredItems);
-    }
-  };
+  // const handleItemSelection = (event, item) => {
+  //   const isChecked = event.target.checked;
+  //   //let selectedItems = [...selectedItems];
+  //   if (isChecked) {
+  //     //this.setState({ selectedItems: this.state.selectedItems.concat(item) });
+  //     setSelectedItems([...selectedItems, { ...item }]);
+  //   } else {
+  //     const filteredItems = selectedItems.filter(
+  //       (selectedItem) => selectedItem.slno !== item.slno
+  //     );
+  //     //this.setState({ selectedItems: filteredItems });
+  //     setSelectedItems(filteredItems);
+  //   }
+  // };
 
   const navigateToBillingComponent = () => {
     //window.location = "/billing";
 
     history.push("/billing");
-    onSelectItems(selectedItems);
+    onSelectItems(isItemModified ? selectedItems : billingItemsContext);
   };
 
   useEffect(() => {
@@ -200,13 +211,13 @@ const GallarySection = ({
           <div className="card card-style" key={item.slno}>
             <div className="card-body">
               <h5 className="card-title">{item.brand}</h5>
-              <input
+              {/* <input
                 type="checkbox"
                 onChange={(event) => {
                   handleItemSelection(event, item);
                 }}
                 checked={item.isChecked}
-              />
+              /> */}
               <p className="card-text">
                 This is a longer card with supporting text below as a natural
                 lead-in to additional content. This content is a little bit
