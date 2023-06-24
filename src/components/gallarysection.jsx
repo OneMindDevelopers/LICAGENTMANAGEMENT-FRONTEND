@@ -123,7 +123,7 @@ const GallarySection = ({
   const navigateToBillingComponent = () => {
     //window.location = "/billing";
 
-    history.push("/billing");
+    history.push("/preview");
     onSelectItems(isItemModified ? selectedItems : billingItemsContext);
   };
 

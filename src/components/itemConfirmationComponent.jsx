@@ -2,7 +2,7 @@ import React, { Component, useContext, useEffect, useState } from "react";
 import BillingItemsContext from "../context/BillingItemsContext";
 import * as userService from "../services/registrationService";
 
-const ConfirmationSectionComponent = () => {
+const ItemConfirmationSectionComponent = () => {
   const DISCOUNT_PERCENTAGE = 15;
   const billingItemsContext = useContext(BillingItemsContext);
   const [agentList, setAgentList] = useState([]);
@@ -150,22 +150,22 @@ const ConfirmationSectionComponent = () => {
         </div>
       </form>
       <hr />
-      {/* <ul className="list-group list-group-flush">
-        <li className="list-group-item">
-          {values.customerName &&
-            `Name of the customer is: ${values.customerName}`}
-        </li>
-        <li className="list-group-item">
-          {values.customerName &&
-            `Phone Number of the Customer is: ${values.customerPhoneNumber}`}
-        </li>
-      </ul> */}
-      {values.customerName && (
-        <div>Name of the customer is: {values.customerName}</div>
-      )}
-      <br />
-      {values.customerPhoneNumber && (
-        <div>Phone Number of the Customer is: {values.customerPhoneNumber}</div>
+
+      {values.customerName && values.customerPhoneNumber && (
+        <div className="row">
+          <div className="col-6">
+            <table>
+              <tr>
+                <th> &nbsp;Customer Name:</th>
+                <td>{values.customerName}</td>
+              </tr>
+              <tr>
+                <th>Phone Number:</th>
+                <td>{values.customerPhoneNumber}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
       )}
       <br />
       {billingItemsContext && (
@@ -203,4 +203,4 @@ const ConfirmationSectionComponent = () => {
   );
 };
 
-export default ConfirmationSectionComponent;
+export default ItemConfirmationSectionComponent;

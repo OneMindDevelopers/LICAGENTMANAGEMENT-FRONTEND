@@ -5,20 +5,15 @@ import "./App.css";
 import Navbar from "./components/navbar";
 import NotFound from "./components/not-found";
 import Logout from "./components/logout";
-import Gallary from "./components/gallary";
 import ForgotPassword from "./forms/forgotPassword";
 import ItemContext from "./context/itemContext";
 import AdminLogin from "./forms/adminLogin";
 import AdminRegistration from "./forms/adminRegister";
 import AgentRegistration from "./forms/agentRegister";
-import BillingPage from "./components/billingPage";
-import Thankyou from "./components/thankyou";
-import Demo from "./components/demo1";
 import BillingItemsContext from "./context/BillingItemsContext";
-import BillingSectionComponent from "./components/billingSection";
+import ItemPreviewComponent from "./components/itemPreviewComponent";
 import GallarySection from "./components/gallarySection";
-import ConfirmationSection from "./components/confirmationSection";
-import ConfirmationSectionComponent from "./components/confirmationSection";
+import ItemConfirmationSectionComponent from "./components/itemConfirmationComponent";
 
 class App extends Component {
   state = {
@@ -85,13 +80,13 @@ class App extends Component {
                 <Route path="/forgotPassword" component={ForgotPassword} />
                 <Route
                   path="/confirm"
-                  component={ConfirmationSectionComponent}
+                  component={ItemConfirmationSectionComponent}
                 />
 
                 <Route
-                  path="/billing"
+                  path="/preview"
                   render={(props) => (
-                    <BillingSectionComponent
+                    <ItemPreviewComponent
                       OnEditOptionBillingPage={this.handleEditOptionBillingPage}
                       {...props}
                     />

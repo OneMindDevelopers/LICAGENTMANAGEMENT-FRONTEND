@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import BillingItemsContext from "../context/BillingItemsContext";
 
-const BillingSectionComponent = ({ OnEditOptionBillingPage, history }) => {
+const ItemPreviewComponent = ({ OnEditOptionBillingPage, history }) => {
   const billingItemsContext = useContext(BillingItemsContext);
   const [billingItems, setBillingItems] = useState(billingItemsContext);
   const [totalQty, setTotalQty] = useState();
@@ -169,4 +169,4 @@ const BillingSectionComponent = ({ OnEditOptionBillingPage, history }) => {
   );
 };
 
-export default BillingSectionComponent;
+export default ItemPreviewComponent;
