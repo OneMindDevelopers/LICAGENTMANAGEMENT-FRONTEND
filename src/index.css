@@ -109,3 +109,11 @@ code {
 .continue-billing-page-btn {
   margin-top: 16px;
 }
+
+/* confirm */
+
+.check-for-agent {
+  position: relative;
+  left: 14em;
+  bottom: 38px;
+}

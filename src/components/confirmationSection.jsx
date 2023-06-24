@@ -8,6 +8,7 @@ const ConfirmationSectionComponent = () => {
   const [agentList, setAgentList] = useState([]);
   const [isAgentRegistered, setIsAgentRegistered] = useState(false);
   const [registeredAgent, setRegisteredAgent] = useState({});
+  const [userAgentInfo, setUserAgentInfo] = useState();
   const [values, setValues] = useState({
     agentId: "",
     customerName: "",
@@ -19,6 +20,16 @@ const ConfirmationSectionComponent = () => {
       ...values,
       [input.name]: input.value,
     }));
+    //setUserAgentInfo(input);
+  };
+
+  const handleAgentCheck = (event) => {
+    // setValues((values) => ({
+    //   ...values,
+    //   [userAgentInfo.name]: userAgentInfo.value,
+    // }));
+    setUserAgentInfo(values);
+    event.preventDefault();
   };
 
   useEffect(() => {
@@ -33,8 +44,6 @@ const ConfirmationSectionComponent = () => {
       const totalAmountAfterDiscount = totalPrice - totalPrice * discountAmount;
       setTotalPrice(totalAmountAfterDiscount);
     }
-
-    console.log("billingItemsContext", billingItemsContext);
   }, [billingItemsContext, totalPrice, isAgentRegistered]);
 
   useEffect(() => {
@@ -50,11 +59,11 @@ const ConfirmationSectionComponent = () => {
 
   useEffect(() => {
     const registeredAgent = agentList.find(
-      (agent) => agent.agentId === values.agentId
+      (agent) => agent.agentId === userAgentInfo?.agentId
     );
     setIsAgentRegistered(registeredAgent);
     setRegisteredAgent(registeredAgent);
-  }, [agentList, values.agentId]);
+  }, [agentList, userAgentInfo]);
 
   return (
     <>
@@ -74,10 +83,19 @@ const ConfirmationSectionComponent = () => {
               onChange={handleInputChange}
               style={{ width: "300px", margin: "0 auto" }}
             />
+            <button
+              className="btn btn-small btn-success check-for-agent"
+              onClick={(e) => {
+                handleAgentCheck(e);
+              }}
+              disabled={!billingItemsContext}
+            >
+              Check For Agent
+            </button>
           </div>
         </div>
-        {!values.agentId && <div className="col-md-6"></div>}
-        {values.agentId && (
+        {!userAgentInfo?.agentId && <div className="col-md-6"></div>}
+        {userAgentInfo?.agentId && (
           <div className="col-md-6">
             {isAgentRegistered && (
               <div className="alert alert-primary m-2" role="alert">
@@ -132,6 +150,16 @@ const ConfirmationSectionComponent = () => {
         </div>
       </form>
       <hr />
+      {/* <ul className="list-group list-group-flush">
+        <li className="list-group-item">
+          {values.customerName &&
+            `Name of the customer is: ${values.customerName}`}
+        </li>
+        <li className="list-group-item">
+          {values.customerName &&
+            `Phone Number of the Customer is: ${values.customerPhoneNumber}`}
+        </li>
+      </ul> */}
       {values.customerName && (
         <div>Name of the customer is: {values.customerName}</div>
       )}
