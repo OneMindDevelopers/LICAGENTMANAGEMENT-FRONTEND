@@ -1,5 +1,5 @@
 import React from "react";
-import Joi from "joi-browser";
+import Joi, { errors } from "joi-browser";
 import Form from "./form";
 import * as userService from "../services/registrationService";
 import ToastNotification from "../common/toastNotification";
@@ -21,6 +21,7 @@ class AgentRegistration extends Form {
     },
     isToastNotification: false,
     errors: {},
+    errorMessage: null,
   };
 
   componentDidMount = () => {
@@ -67,18 +68,28 @@ class AgentRegistration extends Form {
     } catch (ex) {
       if (ex.response) {
         this.setState({ isToastNotification: false });
-        const errors = { ...this.state.errors };
-        errors.phone = ex.response.data;
-        this.setState({ errors });
+        const errorMessage = ex?.response?.data?.message;
+        //errors.phone = ex.response.data;
+        this.setState({ errorMessage });
       }
     }
   };
 
   render() {
-    const { isToastNotification } = this.state;
+    const { isToastNotification, errorMessage } = this.state;
     return (
       <React.Fragment>
         <h1 className="agent-registration-style">{AGENT_REGISTRATION}</h1>
+        <div className="agent-registration-success-toast-message">
+          {isToastNotification && (
+            <ToastNotification message={REGISTER_TOAST_MESSAGE} />
+          )}
+        </div>
+        <div className="agent-registration-error-toast-message">
+          {!isToastNotification && errorMessage && (
+            <ToastNotification message={errorMessage} />
+          )}
+        </div>
         <form onSubmit={this.handleSubmit} className="row g-3">
           <div className="col-md-6">
             {this.displayInput("agentID", "AgentID")}

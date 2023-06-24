@@ -59,6 +59,7 @@ code {
   position: relative;
   float: left;
   top: 4px;
+  width:15%;
 }
 
 .billing-qty-icons {
@@ -96,7 +97,7 @@ code {
 
 .left-40em {
   position: relative;
-  left: 30em !important;
+  left: 38em !important;
 }
 
 .navbar-brand {

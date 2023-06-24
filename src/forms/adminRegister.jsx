@@ -59,10 +59,6 @@ class AdminRegistration extends Form {
           <HomePageBackgroundImage />
         </div>
         <div className="col-6 background-image">
-          {isToastNotification && (
-            <ToastNotification message={REGISTER_TOAST_MESSAGE} />
-          )}
-
           <h1 className="agent-registration-style">{ADMIN_REGISTRATION}</h1>
 
           <form onSubmit={this.handleSubmit}>
@@ -77,6 +73,11 @@ class AdminRegistration extends Form {
             )}
             {this.displayButton("Register")}
           </form>
+          <div>
+            {isToastNotification && (
+              <ToastNotification message={REGISTER_TOAST_MESSAGE} />
+            )}
+          </div>
         </div>
       </div>
     );

@@ -1,26 +1,29 @@
-import React, { Component } from "react";
+import React from "react";
 
-class BreadCrum extends Component {
-  render() {
-    const { label } = this.props;
-    return (
-      <nav>
-        <ol className="breadcrumb custom-breadcrum-styles">
-          <li className="breadcrumb-item">
-            <a
-              href="/login"
-              onClick={() => {
-                localStorage.removeItem("token");
-              }}
-            >
-              Home
-            </a>
+const BreadCrum = ({ breadcrums }) => {
+  return (
+    <nav>
+      <ol className="breadcrumb custom-breadcrum-styles ">
+        {breadcrums?.map((breadcrum) => (
+          <li className={`${breadcrum.style}`}>
+            {breadcrum.path && (
+              <a
+                href={`${breadcrum.path}`}
+                onClick={() => {
+                  localStorage.removeItem("token");
+                }}
+              >
+                {breadcrum.label}
+              </a>
+            )}
+            {!breadcrum.path && breadcrum.label}
           </li>
-          <li className="breadcrumb-item active">{label}</li>
-        </ol>
-      </nav>
-    );
-  }
-}
+        ))}
+        {/*        
+        <li className="breadcrumb-item active">{label}</li> */}
+      </ol>
+    </nav>
+  );
+};
 
 export default BreadCrum;

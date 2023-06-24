@@ -28,8 +28,6 @@ const GallarySection = ({
     brand: "All Brands",
   });
   const [initialCount, setInitialCount] = useState(0);
-  const [isNavigateToBillingComponent, setIsNavigateToBillingComponent] =
-    useState(false);
   const [isItemModified, setIsItemModified] = useState(false);
 
   const handlePageChange = (currentPage) => {
@@ -179,7 +177,12 @@ const GallarySection = ({
 
   return (
     <div className="row">
-      <BreadCrum label={"gallary"} />
+      <BreadCrum
+        breadcrums={[
+          { label: "Home", path: "/login", style: "breadcrumb-item" },
+          { label: "Gallary", path: null, style: "breadcrumb-item active" },
+        ]}
+      />
       <div className="col-3 background-image">
         <ListGroup
           items={catagories}

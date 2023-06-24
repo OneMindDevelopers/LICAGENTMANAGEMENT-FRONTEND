@@ -61,10 +61,6 @@ class ForgotPassword extends Form {
           <HomePageBackgroundImage />
         </div>
         <div className="col-6 background-image">
-          {isToastNotification && (
-            <ToastNotification message={FORGORPASSWORD_TOAST_MESSAGE} />
-          )}
-
           <br></br>
           <br></br>
           <h1 className="agent-login-style">{AGENT_FORGOTPASSWORD}</h1>
@@ -78,6 +74,11 @@ class ForgotPassword extends Form {
             )}
             {this.displayButton("Submit")}
           </form>
+          <div>
+            {isToastNotification && (
+              <ToastNotification message={FORGORPASSWORD_TOAST_MESSAGE} />
+            )}
+          </div>
         </div>
       </div>
     );

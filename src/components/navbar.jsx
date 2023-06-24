@@ -13,13 +13,13 @@ class NavBar extends Component {
         </NavLink>
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
-            {user && (
+            {/* {user && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/gallary">
                   Gallary
                 </NavLink>
               </li>
-            )}
+            )} */}
             {!user && (
               <React.Fragment>
                 <li className="nav-item">
@@ -36,12 +36,6 @@ class NavBar extends Component {
             )}
             {user && (
               <React.Fragment>
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="/gallary">
-                    {user.name}
-                  </NavLink>
-                </li>
-
                 <li className="nav-item">
                   <NavLink className="nav-link" to="/agentRegister">
                     Agent Registration

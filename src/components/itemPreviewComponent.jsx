@@ -50,11 +50,6 @@ const ItemPreviewComponent = ({ OnEditOptionBillingPage, history }) => {
     const billingItems = [...billingItemsContext];
     const index = billingItems.indexOf(selectedItem);
 
-    // if (billingItems[index].quantity <= 0) {
-    //   alert("Cannot decrement the item behind 0");
-    //   return;
-    // }
-
     billingItems[index].quantity = billingItems[index].quantity - 1;
     const filteredItems = billingItems.filter((item) => item.quantity > 0);
     setBillingItems(filteredItems);
@@ -71,8 +66,8 @@ const ItemPreviewComponent = ({ OnEditOptionBillingPage, history }) => {
 
   return (
     <React.Fragment>
-      <h1>Order Summary</h1>
       <div className="row background-image">
+        <h1>Order Summary</h1>
         <div className="jumbotron  mt-5 col-6">
           <span className=" billing-edit-page">
             <button
@@ -104,10 +99,10 @@ const ItemPreviewComponent = ({ OnEditOptionBillingPage, history }) => {
               {billingItems.map((billingItem) => (
                 <li
                   key={billingItem.id}
-                  className="list-group-item background-color"
+                  className="list-group-item background-color preview-item"
                 >
                   <span className="billing-item-name">
-                    Name:{billingItem.name}
+                    {billingItem.brand}
                   </span>
                   <span className="billing-qty-icons">
                     <p className="card-text">
