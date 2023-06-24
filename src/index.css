@@ -29,7 +29,7 @@ code {
 }
 
 .width-40 {
-  width:40px !important;
+  width: 40px !important;
 }
 
 .billing-qty-box {
@@ -42,15 +42,45 @@ code {
 
 .plus-icon {
   position: relative;
-  left:50px
+  left: 50px;
 }
 
 .background-white {
-  background-color:#fff
+  background-color: #fff;
 }
 
 /* billing page */
 .editbutton_billingpage {
-  position:relative;
-  bottom:39px;
+  position: relative;
+  bottom: 39px;
+}
+
+.billing-item-name {
+  position: relative;
+  float: left;
+  top: 4px;
+}
+
+.billing-qty-icons {
+  float: left;
+  position: relative;
+  left: 13em;
+}
+.billing-item-size {
+  position: relative;
+  left: 28px;
+}
+
+.billing-item-price {
+  float: right;
+}
+
+.billing-edit-page {
+  float: left;
+}
+
+.billing-navigate-confirmation {
+  position: relative;
+  bottom: 39px;
+  right: 10em;
 }
