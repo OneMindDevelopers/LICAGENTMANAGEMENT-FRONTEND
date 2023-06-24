@@ -82,7 +82,7 @@ code {
 .billing-navigate-confirmation {
   position: relative;
   bottom: 39px;
-  right: 10em;
+  right: 9em;
 }
 
 /* login */
@@ -102,4 +102,10 @@ code {
 .navbar-brand {
   position: relative;
   left: 10px;
+}
+
+/* gallary */
+
+.continue-billing-page-btn {
+  margin-top: 16px;
 }

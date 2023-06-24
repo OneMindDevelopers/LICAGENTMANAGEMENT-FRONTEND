@@ -16,7 +16,7 @@ import Thankyou from "./components/thankyou";
 import Demo from "./components/demo1";
 import BillingItemsContext from "./context/BillingItemsContext";
 import BillingSectionComponent from "./components/billingSection";
-import GallarySection from "./components/gallarysection";
+import GallarySection from "./components/gallarySection";
 import ConfirmationSection from "./components/confirmationSection";
 import ConfirmationSectionComponent from "./components/confirmationSection";
 

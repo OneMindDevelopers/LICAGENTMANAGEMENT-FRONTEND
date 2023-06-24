@@ -87,6 +87,11 @@
   height: 42em;
 }
 
+.background-color {
+  background-color: #d9afd9;
+  background-image: linear-gradient(0deg, #afd9cc 0%, #97d9e1 100%);
+}
+
 .black {
   color: black;
 }
@@ -98,8 +103,6 @@
 .width-16em {
   width: 16em !important;
 }
-
-
 
 .float-left {
   float: left;

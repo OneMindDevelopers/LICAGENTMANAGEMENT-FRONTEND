@@ -120,7 +120,6 @@ const GallarySection = ({
     }
   };
 
-
   const navigateToBillingComponent = () => {
     //window.location = "/billing";
 
@@ -190,12 +189,12 @@ const GallarySection = ({
       </div>
       <div className="col-9 background-image">
         <SearchBox value={searchQuery} onChange={handleSearch} />
-    
+
         {paginatedGallaries.map((item) => (
           <div className="card card-style" key={item.slno}>
             <div className="card-body">
               <h5 className="card-title">{item.brand}</h5>
-          
+
               <p className="card-text">
                 This is a longer card with supporting text below as a natural
                 lead-in to additional content. This content is a little bit
@@ -240,7 +239,10 @@ const GallarySection = ({
           currentPage={currentPage}
           onPageChange={handlePageChange}
         />
-        <button onClick={navigateToBillingComponent}>
+        <button
+          className="btn btn-success continue-billing-page-btn"
+          onClick={navigateToBillingComponent}
+        >
           Continue to Billing Page
         </button>
       </div>
