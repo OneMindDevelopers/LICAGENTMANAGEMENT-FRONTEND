@@ -190,20 +190,12 @@ const GallarySection = ({
       </div>
       <div className="col-9 background-image">
         <SearchBox value={searchQuery} onChange={handleSearch} />
-        {/* {paginatedGallaries.map((data) => (
-            <h1 onClick={(data)=>{this.handleDemo(data)}}>{data.brand}</h1>
-          ))} */}
+    
         {paginatedGallaries.map((item) => (
           <div className="card card-style" key={item.slno}>
             <div className="card-body">
               <h5 className="card-title">{item.brand}</h5>
-              {/* <input
-                type="checkbox"
-                onChange={(event) => {
-                  handleItemSelection(event, item);
-                }}
-                checked={item.isChecked}
-              /> */}
+          
               <p className="card-text">
                 This is a longer card with supporting text below as a natural
                 lead-in to additional content. This content is a little bit

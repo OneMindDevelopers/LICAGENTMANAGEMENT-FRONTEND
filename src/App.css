@@ -99,10 +99,7 @@
   width: 16em !important;
 }
 
-.left-40em {
-  position: relative;
-  left: 40em !important;
-}
+
 
 .float-left {
   float: left;
