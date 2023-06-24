@@ -84,3 +84,10 @@ code {
   bottom: 39px;
   right: 10em;
 }
+
+/* login */
+
+.login-toast-message {
+  position: relative;
+  top: 4em;
+}

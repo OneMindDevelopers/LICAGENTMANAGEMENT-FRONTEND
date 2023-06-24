@@ -120,20 +120,6 @@ const GallarySection = ({
     }
   };
 
-  // const handleItemSelection = (event, item) => {
-  //   const isChecked = event.target.checked;
-  //   //let selectedItems = [...selectedItems];
-  //   if (isChecked) {
-  //     //this.setState({ selectedItems: this.state.selectedItems.concat(item) });
-  //     setSelectedItems([...selectedItems, { ...item }]);
-  //   } else {
-  //     const filteredItems = selectedItems.filter(
-  //       (selectedItem) => selectedItem.slno !== item.slno
-  //     );
-  //     //this.setState({ selectedItems: filteredItems });
-  //     setSelectedItems(filteredItems);
-  //   }
-  // };
 
   const navigateToBillingComponent = () => {
     //window.location = "/billing";

@@ -51,10 +51,7 @@ class AdminLogin extends Form {
         <div className="col-6 border-right">
           <HomePageBackgroundImage />
         </div>
-        <div className="col-6 background-image">
-          {isToastNotification && (
-            <ToastNotification message={LOGIN_TOAST_MESSAGE} />
-          )}
+        <div className="col-6 background-image  ">
           <h1 className="agent-login-style">{ADMIN_LOGIN}</h1>
           <form onSubmit={this.handleSubmit}>
             {this.displayInput("phone", "Mobile Number")}
@@ -70,6 +67,11 @@ class AdminLogin extends Form {
               Forgot Password ?
             </a>
           </span>
+          <div className="login-toast-message">
+            {isToastNotification && (
+              <ToastNotification message={LOGIN_TOAST_MESSAGE} />
+            )}
+          </div>
         </div>
       </div>
     );
