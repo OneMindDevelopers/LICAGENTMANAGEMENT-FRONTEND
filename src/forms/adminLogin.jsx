@@ -4,7 +4,7 @@ import Form from "./form";
 import auth from "../services/authService";
 import { Redirect } from "react-router";
 import ToastNotification from "../common/toastNotification";
-import { LOGIN_TOAST_MESSAGE, ADMIN_LOGIN } from "../constant";
+import { LOGIN_TOAST_MESSAGE, ADMIN_LOGIN, NOT_REGISTERED } from "../constant";
 import HomePageBackgroundImage from "../common/homePageBackgorundImage";
 
 class AdminLogin extends Form {
@@ -15,6 +15,7 @@ class AdminLogin extends Form {
     },
     isToastNotification: false,
     errors: {},
+    errorMessage: false,
   };
 
   schema = {
@@ -38,13 +39,13 @@ class AdminLogin extends Form {
         this.setState({ isToastNotification: false });
         const errors = { ...this.state.errors };
         errors.phone = ex.response.data;
-        this.setState({ errors });
+        this.setState({ errors, errorMessage: true });
       }
     }
   };
 
   render() {
-    const { isToastNotification } = this.state;
+    const { isToastNotification, errorMessage } = this.state;
     if (auth.getCurrentUser()) return <Redirect to="/" />;
     return (
       <div className="row margin-top">
@@ -71,6 +72,7 @@ class AdminLogin extends Form {
             {isToastNotification && (
               <ToastNotification message={LOGIN_TOAST_MESSAGE} />
             )}
+            {errorMessage && <ToastNotification message={NOT_REGISTERED} />}
           </div>
         </div>
       </div>

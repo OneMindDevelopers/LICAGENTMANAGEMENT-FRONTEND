@@ -18,7 +18,7 @@ const GallarySection = ({
   const [paginatedGallaries, setPaginatedGallaries] = useState([]);
   const [filteredGallaries, setFilteredGallaries] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [pageSize, setPageSize] = useState(9);
+  const [pageSize, setPageSize] = useState(6);
   const [currentPage, setCurrentPage] = useState(1);
   const [catagories, setCatagories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
@@ -176,7 +176,7 @@ const GallarySection = ({
     );
 
   return (
-    <div className="row">
+    <div className="row background-image">
       <BreadCrum
         breadcrums={[
           { label: "Home", path: "/login", style: "breadcrumb-item" },

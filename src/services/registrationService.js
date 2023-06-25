@@ -18,3 +18,7 @@ export function getAgentRegistration(user) {
 export function forgotPassword(user) {
   return http.post(apiEndpoint + "forgotPassword", user);
 }
+
+export function getUsers() {
+  return http.get(apiEndpoint + "getUsers");
+}

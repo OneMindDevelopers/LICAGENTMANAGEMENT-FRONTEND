@@ -12,7 +12,7 @@ import AdminRegistration from "./forms/adminRegister";
 import AgentRegistration from "./forms/agentRegister";
 import BillingItemsContext from "./context/BillingItemsContext";
 import ItemPreviewComponent from "./components/itemPreviewComponent";
-import GallarySection from "./components/gallarySection";
+import GallarySection from "./components/gallarysection";
 import ItemConfirmationSectionComponent from "./components/itemConfirmationComponent";
 
 class App extends Component {
