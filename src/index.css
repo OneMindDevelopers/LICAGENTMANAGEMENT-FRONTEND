@@ -1,0 +1,120 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.billing-section {
+  background-color: #e9ecef;
+}
+
+.billing-card-width {
+  width: 18rem;
+}
+
+.float-left {
+  float: left;
+}
+
+.width-40 {
+  width: 40px !important;
+}
+
+.billing-qty-box {
+  width: 63px !important;
+  float: left;
+  position: relative;
+  left: 21%;
+  top: 2px;
+}
+
+.plus-icon {
+  position: relative;
+  left: 50px;
+}
+
+.background-white {
+  background-color: #fff;
+}
+
+/* billing page */
+.editbutton_billingpage {
+  position: relative;
+  bottom: 39px;
+}
+
+.billing-item-name {
+  position: relative;
+  float: left;
+  top: 4px;
+  width:15%;
+}
+
+.billing-qty-icons {
+  float: left;
+  position: relative;
+  left: 13em;
+}
+.billing-item-size {
+  position: relative;
+  left: 28px;
+}
+
+.billing-item-price {
+  float: right;
+}
+
+.billing-edit-page {
+  float: left;
+}
+
+.billing-navigate-confirmation {
+  position: relative;
+  bottom: 39px;
+  right: 9em;
+}
+
+/* login */
+
+.login-toast-message {
+  position: relative;
+  top: 4em;
+}
+
+/* navbar */
+
+.left-40em {
+  position: relative;
+  left: 38em !important;
+}
+
+.navbar-brand {
+  position: relative;
+  left: 10px;
+}
+
+/* gallary */
+
+.continue-billing-page-btn {
+  margin-top: 16px;
+}
+
+/* confirm */
+
+.check-for-agent {
+  position: relative;
+  left: 14em;
+  bottom: 38px;
+}

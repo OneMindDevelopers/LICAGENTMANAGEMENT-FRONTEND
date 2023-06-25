@@ -1,0 +1,5 @@
+{
+  "baseUrl": "http://localhost:3001/admin/",
+  "itemUrl": "http://localhost:3001/item/",
+  "agentUrl": "http://localhost:3001/agent/"
+}
