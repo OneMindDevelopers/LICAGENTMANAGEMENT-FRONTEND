@@ -13,7 +13,7 @@ const Pagination = ({ items, currentPage, pageSize, onPageChange }) => {
           >
             <a
               className="page-link"
-              href="#"
+              href="_self"
               onClick={() => {
                 onPageChange(page);
               }}
