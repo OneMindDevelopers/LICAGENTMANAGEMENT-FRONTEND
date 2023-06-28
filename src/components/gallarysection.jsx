@@ -22,7 +22,7 @@ const GallarySection = ({
   const [currentPage, setCurrentPage] = useState(1);
   const [catagories, setCatagories] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [importExcelData, setImportExcelData] = useState([]);
+  //const [importExcelData, setImportExcelData] = useState([]);
   const [selectedCatagory, setSelectedCatagory] = useState({
     slno: "",
     brand: "All Brands",
@@ -33,6 +33,10 @@ const GallarySection = ({
   const handlePageChange = (currentPage) => {
     setCurrentPage(currentPage);
   };
+
+  useEffect(() => {
+    setPageSize(6);
+  }, []);
 
   const handleCatagoryChange = (selectedCatagory) => {
     setSelectedCatagory(selectedCatagory);
@@ -47,7 +51,7 @@ const GallarySection = ({
 
   useEffect(() => {
     if (excelData && excelData.length) {
-      setImportExcelData(excelData);
+      //setImportExcelData(excelData);
       const gallaries = [...excelData];
       const catagories = [{ slno: "", brand: "All Brands" }, ...gallaries];
       //this.setState({ gallaries, catagories });
@@ -55,6 +59,7 @@ const GallarySection = ({
       setCatagories(catagories);
       setInitialCount(initialCount + 1);
     }
+    //eslint-disable-next-line react-hooks/exhaustive-steps
   }, [excelData, excelErrorMessage]);
 
   const handleAdditionItem = (selectedItem) => {
@@ -136,6 +141,7 @@ const GallarySection = ({
       });
       setGallaries(gallaries);
     }
+    //eslint-disable-next-line react-hooks/exhaustive-steps
   }, [editBillingItems]);
 
   useEffect(() => {
@@ -155,6 +161,7 @@ const GallarySection = ({
     setFilteredGallaries(filtered);
     const paginatedGallaries = paginate(filtered, currentPage, pageSize);
     setPaginatedGallaries(paginatedGallaries);
+    //eslint-disable-next-line react-hooks/exhaustive-steps
   }, [gallaries, selectedCatagory, currentPage]);
 
   if (excelErrorMessage && excelErrorMessage.length) {

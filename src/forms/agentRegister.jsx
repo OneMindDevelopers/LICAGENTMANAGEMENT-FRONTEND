@@ -1,10 +1,9 @@
 import React from "react";
-import Joi, { errors } from "joi-browser";
+import Joi from "joi-browser";
 import Form from "./form";
 import * as userService from "../services/registrationService";
 import ToastNotification from "../common/toastNotification";
 import { AGENT_REGISTRATION, REGISTER_TOAST_MESSAGE } from "../constant";
-import HomePageBackgroundImage from "../common/homePageBackgorundImage";
 
 class AgentRegistration extends Form {
   state = {

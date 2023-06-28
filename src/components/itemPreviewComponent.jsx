@@ -22,6 +22,7 @@ const ItemPreviewComponent = ({ OnEditOptionBillingPage, history }) => {
     setTotalItems(totalItems);
     setTotalQty(totalQty);
     setTotalPrice(totalPrice);
+    //eslint-disable-next-line react-hooks/exhaustive-steps
   }, []);
 
   useEffect(() => {

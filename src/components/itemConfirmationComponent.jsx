@@ -1,4 +1,4 @@
-import React, { Component, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import BillingItemsContext from "../context/BillingItemsContext";
 import * as userService from "../services/registrationService";
 
