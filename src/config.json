@@ -1,5 +1,5 @@
 {
-  "baseUrl": "http://localhost:3001/admin/",
-  "itemUrl": "http://localhost:3001/item/",
-  "agentUrl": "http://localhost:3001/agent/"
+  "baseUrl": "https://lic-ueu6.onrender.com/admin/",
+  "itemUrl": "https://lic-ueu6.onrender.com/item/",
+  "agentUrl": "https://lic-ueu6.onrender.com/agent/"
 }
