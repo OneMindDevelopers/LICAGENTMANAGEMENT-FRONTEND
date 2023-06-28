@@ -21,7 +21,7 @@
     "react-scripts": "^5.0.1",
     "web-vitals": "^1.1.2",
     "xlsx": "^0.18.5",
-    "eslint-plugin-react-hook-form": "^4.6.0"
+    "eslint-plugin-react-hooks": "^4"
   },
   "scripts": {
     "predeploy": "npm run build",
