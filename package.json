@@ -20,7 +20,8 @@
     "react-router-dom": "^5.3.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^1.1.2",
-    "xlsx": "^0.18.5"
+    "xlsx": "^0.18.5",
+    "eslint-plugin-react-hook-form": "^4.6.0"
   },
   "scripts": {
     "predeploy": "npm run build",
