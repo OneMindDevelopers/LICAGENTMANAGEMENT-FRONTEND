@@ -59,7 +59,7 @@ const GallarySection = ({
       setCatagories(catagories);
       setInitialCount(initialCount + 1);
     }
-    //eslint-disable-next-line react-hooks/exhaustive-steps
+    //eslint-disable-next-line 
   }, [excelData, excelErrorMessage]);
 
   const handleAdditionItem = (selectedItem) => {
@@ -141,7 +141,7 @@ const GallarySection = ({
       });
       setGallaries(gallaries);
     }
-    //eslint-disable-next-line react-hooks/exhaustive-steps
+    //eslint-disable-next-line 
   }, [editBillingItems]);
 
   useEffect(() => {
@@ -161,7 +161,7 @@ const GallarySection = ({
     setFilteredGallaries(filtered);
     const paginatedGallaries = paginate(filtered, currentPage, pageSize);
     setPaginatedGallaries(paginatedGallaries);
-    //eslint-disable-next-line react-hooks/exhaustive-steps
+    //eslint-disable-next-line 
   }, [gallaries, selectedCatagory, currentPage]);
 
   if (excelErrorMessage && excelErrorMessage.length) {
